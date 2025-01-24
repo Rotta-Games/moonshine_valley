@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbsjkjyg6w0sk"]
+[gd_scene load_steps=7 format=3 uid="uid://swui5hdf37f4"]
 
 [ext_resource type="Script" path="res://scenes/splash.gd" id="1_8k81l"]
-[ext_resource type="Texture2D" uid="uid://di0f4kpenijgb" path="res://assets/gfx/gamee.png" id="2_m3220"]
+[ext_resource type="Texture2D" uid="uid://gcqo742vjoxo" path="res://assets/gfx/gamee.png" id="2_m3220"]
 [ext_resource type="AudioStream" uid="uid://ksl126xb0xru" path="res://assets/sfx/gamee_boom.mp3" id="3_t02ui"]
 
 [sub_resource type="Animation" id="Animation_qkeem"]

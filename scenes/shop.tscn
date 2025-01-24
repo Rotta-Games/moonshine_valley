@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://12xj50xlse6g"]
+
+[ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shopkeeper.tscn" id="1_y0io0"]
+
+[node name="Shop" type="Node2D"]
+
+[node name="Shopkeeper" parent="." instance=ExtResource("1_y0io0")]
+position = Vector2(535, 297)
