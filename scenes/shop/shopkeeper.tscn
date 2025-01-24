@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://btk2vrmv1x5kg"]
 
-[ext_resource type="Texture2D" uid="uid://cvq870d0bgtrx" path="res://icon.svg" id="1_5hcca"]
 [ext_resource type="Script" path="res://scripts/shopkeeper.gd" id="1_u284p"]
+[ext_resource type="Texture2D" uid="uid://vrehhrduuj64" path="res://assets/gfx/mr_bokmanni_sheet.png" id="2_4lb51"]
 [ext_resource type="PackedScene" uid="uid://bo7a3vhjunbtd" path="res://scenes/speech_bubble.tscn" id="2_5u7rm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wsubn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_5hcca")
+"texture": ExtResource("2_4lb51")
 }],
 "loop": true,
 "name": &"default",
@@ -22,7 +22,6 @@ radius = 13.0384
 script = ExtResource("1_u284p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_wsubn")
 
 [node name="SpeechBubble" parent="." instance=ExtResource("2_5u7rm")]
