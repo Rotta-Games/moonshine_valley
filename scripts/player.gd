@@ -31,16 +31,17 @@ func _physics_process(delta: float) -> void:
 func _update_action_indicator():
 	if velocity.x > 0:
 		action_indicator.position.x = 28
-		action_indicator.position.y = 0
 	elif velocity.x < 0:
 		action_indicator.position.x = -28
-		action_indicator.position.y = 0
+	elif velocity.y != 0:
+		action_indicator.position.x = 0
 	if velocity.y > 0:
 		action_indicator.position.y = 28
-		action_indicator.position.x = 0
 	elif velocity.y < 0:
 		action_indicator.position.y = -28
-		action_indicator.position.x = 0
+	elif velocity.x != 0:
+		action_indicator.position.y = 0
+		
 
 
 func _on_action_indicator_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
