@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://12xj50xlse6g"]
+[gd_scene load_steps=7 format=4 uid="uid://12xj50xlse6g"]
 
 [ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shop/shopkeeper.tscn" id="1_y0io0"]
 [ext_resource type="Texture2D" uid="uid://biqspkke1m827" path="res://assets/gfx/tileset.png" id="2_8645e"]
 [ext_resource type="PackedScene" uid="uid://1wmh7fl8b55w" path="res://scenes/player.tscn" id="3_y2ov5"]
+[ext_resource type="PackedScene" uid="uid://b0581a0ll1h7w" path="res://scenes/shop/shop_shelf.tscn" id="4_xblwh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kq8qg"]
 texture = ExtResource("2_8645e")
@@ -22,6 +23,7 @@ texture = ExtResource("2_8645e")
 
 [sub_resource type="TileSet" id="TileSet_qi08l"]
 physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_kq8qg")
 
 [node name="Shop" type="Node2D"]
@@ -52,5 +54,7 @@ tile_set = SubResource("TileSet_qi08l")
 [node name="Player" parent="." instance=ExtResource("3_y2ov5")]
 position = Vector2(219, 234)
 collision_mask = 2
-motion_mode = 0
 slide_on_ceiling = false
+
+[node name="YeastShelf" parent="." instance=ExtResource("4_xblwh")]
+position = Vector2(312, 90)

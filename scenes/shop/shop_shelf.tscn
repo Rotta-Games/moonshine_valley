@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://b0581a0ll1h7w"]
+[gd_scene load_steps=2 format=3 uid="uid://b0581a0ll1h7w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb4dh"]
+size = Vector2(240, 44)
 
 [node name="ShopShelf" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="." groups=["yeast_buy_zone"]]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wb4dh")
