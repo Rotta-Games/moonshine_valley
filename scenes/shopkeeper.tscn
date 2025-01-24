@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://btk2vrmv1x5kg"]
+[gd_scene load_steps=4 format=3 uid="uid://btk2vrmv1x5kg"]
 
 [ext_resource type="Texture2D" uid="uid://cvq870d0bgtrx" path="res://icon.svg" id="1_5hcca"]
+[ext_resource type="PackedScene" uid="uid://bo7a3vhjunbtd" path="res://scenes/speech_bubble.tscn" id="2_5u7rm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wsubn"]
 animations = [{
@@ -17,5 +18,7 @@ animations = [{
 scale = Vector2(0.2, 0.2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_wsubn")
+
+[node name="SpeechBubble" parent="." instance=ExtResource("2_5u7rm")]
+position = Vector2(-75, -95)
