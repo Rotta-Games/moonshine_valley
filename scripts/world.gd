@@ -16,4 +16,3 @@ func _process(delta: float) -> void:
 func on_shop_door_entered(body:Node2D) -> void:
 	if body.name == "Player":
 		get_tree().change_scene_to_file("res://scenes/shop/shop.tscn")
-
