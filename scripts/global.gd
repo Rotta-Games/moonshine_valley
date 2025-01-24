@@ -8,7 +8,7 @@ var player_location: PlayerLocation = PlayerLocation.WORLD
 
 var location_scene_map = {
 	PlayerLocation.WORLD: "res://scenes/world.tscn",
-	PlayerLocation.SHOP: "res://scenes/shop/shop.tscn"
+	PlayerLocation.SHOP: "res://scenes/shop/s_market_shop.tscn"
 }
 
 # Called when the node enters the scene tree for the first time.
