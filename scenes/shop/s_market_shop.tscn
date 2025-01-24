@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://1wmh7fl8b55w" path="res://scenes/player.tscn" id="3_n2wh6"]
 [ext_resource type="PackedScene" uid="uid://b0581a0ll1h7w" path="res://scenes/shop/shop_shelf.tscn" id="4_fr3hd"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kq8qg"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_it37c"]
 texture = ExtResource("2_scuqp")
 0:0/0 = 0
 1:0/0 = 0
@@ -117,7 +117,7 @@ texture = ExtResource("2_scuqp")
 [sub_resource type="TileSet" id="TileSet_qi08l"]
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_kq8qg")
+sources/0 = SubResource("TileSetAtlasSource_it37c")
 
 [node name="SMarketShop" type="Node2D"]
 
