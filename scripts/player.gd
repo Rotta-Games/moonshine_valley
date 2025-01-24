@@ -21,6 +21,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y = v_direction * SPEED
 	else:
 		velocity.y = move_toward(velocity.x, 0, SPEED)
+		
+	if Input.is_action_just_pressed("player_action"):
+		_act()
 
 	move_and_slide()
 	_update_action_indicator()
@@ -49,3 +52,10 @@ func _on_action_indicator_area_2d_area_shape_entered(area_rid: RID, area: Area2D
 		
 func _on_action_indicator_area_2d_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	current_action = Action.NONE
+	
+func _act():
+	match current_action:
+		Action.NONE:
+			return
+		Action.BUY_YEAST:
+			printerr("DEWA: OSTA SITÄ VITUN HIIVAA :D")		
