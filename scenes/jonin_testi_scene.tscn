@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx7ratxlypvn7"]
+
+[ext_resource type="PackedScene" uid="uid://1wmh7fl8b55w" path="res://scenes/player.tscn" id="1_7u125"]
+
+[node name="JoninTestiScene" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_7u125")]
+position = Vector2(180, 188)
