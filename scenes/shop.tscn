@@ -23,7 +23,7 @@ sources/0 = SubResource("TileSetAtlasSource_kq8qg")
 [node name="Shop" type="Node2D"]
 
 [node name="Shopkeeper" parent="." instance=ExtResource("1_y0io0")]
-position = Vector2(122, 77)
+position = Vector2(217, 157)
 
 [node name="TileMap" type="Node2D" parent="."]
 
