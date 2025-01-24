@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://swui5hdf37f4"]
+[gd_scene load_steps=7 format=3 uid="uid://bbsjkjyg6w0sk"]
 
 [ext_resource type="Script" path="res://scenes/splash.gd" id="1_8k81l"]
 [ext_resource type="Texture2D" uid="uid://gcqo742vjoxo" path="res://assets/gfx/gamee.png" id="2_m3220"]
@@ -46,7 +46,7 @@ script = ExtResource("1_8k81l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.375, 0.375)
 texture = ExtResource("2_m3220")
 centered = false
 
