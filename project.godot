@@ -31,6 +31,7 @@ window/stretch/scale_mode="integer"
 [global_group]
 
 yeast_buy_zone=""
+sugar_buy_zone=""
 
 [input]
 

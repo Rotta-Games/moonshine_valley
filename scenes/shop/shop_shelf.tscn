@@ -5,7 +5,7 @@ size = Vector2(240, 44)
 
 [node name="ShopShelf" type="Node2D"]
 
-[node name="Area2D" type="Area2D" parent="." groups=["yeast_buy_zone"]]
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 0
 
