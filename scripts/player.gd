@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var inventory: Inventory
 @onready var action_indicator : Sprite2D = $"ActionIndicatorSprite"
 
 const SPEED = 150.0
