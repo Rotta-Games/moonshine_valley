@@ -13,9 +13,11 @@ visible = false
 script = ExtResource("1_2x6hh")
 
 [node name="BubbleSprite" type="Sprite2D" parent="."]
+z_index = 100
 texture = SubResource("PlaceholderTexture2D_wcg2a")
 
 [node name="TextLabel" type="Label" parent="BubbleSprite"]
+z_index = 101
 offset_left = -75.0
 offset_top = -16.0
 offset_right = 81.0
