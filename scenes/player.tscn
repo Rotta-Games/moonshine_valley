@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://1wmh7fl8b55w"]
+[gd_scene load_steps=6 format=3 uid="uid://1wmh7fl8b55w"]
 
 [ext_resource type="Texture2D" uid="uid://cvq870d0bgtrx" path="res://icon.svg" id="1_d2gka"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_whbl5"]
@@ -17,6 +17,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_bt5xu"]
 radius = 13.0384
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h0l66"]
+
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_whbl5")
@@ -28,3 +30,9 @@ sprite_frames = SubResource("SpriteFrames_so5xi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1, 1.00868)
 shape = SubResource("CircleShape2D_bt5xu")
+
+[node name="ActionIndicatorSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.156863)
+position = Vector2(28, 0)
+scale = Vector2(22, 20.045)
+texture = SubResource("PlaceholderTexture2D_h0l66")

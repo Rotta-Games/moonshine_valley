@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var action_indicator : Sprite2D = $"ActionIndicatorSprite"
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
@@ -18,3 +19,18 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	_update_action_indicator()
+
+func _update_action_indicator():
+	if velocity.x > 0:
+		action_indicator.position.x = 28
+		action_indicator.position.y = 0
+	elif velocity.x < 0:
+		action_indicator.position.x = -28
+		action_indicator.position.y = 0
+	if velocity.y > 0:
+		action_indicator.position.y = 28
+		action_indicator.position.x = 0
+	elif velocity.y < 0:
+		action_indicator.position.y = -28
+		action_indicator.position.x = 0
