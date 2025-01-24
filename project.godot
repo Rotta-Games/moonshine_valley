@@ -33,6 +33,10 @@ window/stretch/scale_mode="integer"
 yeast_buy_zone=""
 sugar_buy_zone=""
 
+[gui]
+
+theme/custom_font="res://assets/PublicPixel.ttf"
+
 [input]
 
 move_left={
