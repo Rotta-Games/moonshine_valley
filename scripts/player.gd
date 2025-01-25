@@ -15,6 +15,7 @@ const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 
 const ACTION_HOLD_TIME_THRESHOLD = 0.1
+const ACTION_TAP_TIME_THRESHOLD = 0.8
 
 enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, ACT_BUCKET}
 
@@ -195,7 +196,7 @@ func _act_release():
 		return
 	else:
 		# allow tap for a longer time if not carrying an item
-		if _action_button_timer < ACTION_HOLD_TIME_THRESHOLD * 3:
+		if _action_button_timer < ACTION_TAP_TIME_THRESHOLD:
 			_act_tap()
 
 
