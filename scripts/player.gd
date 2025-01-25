@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal money_changed(amount: int)
 signal bucket_inspected(bucket: Bucket)
+signal pause_button_pressed()
 
 @onready var action_indicator : Sprite2D = $"ActionIndicatorSprite"
 
@@ -46,7 +47,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("quit"):
-		get_tree().quit()
+		pause_button_pressed.emit()
 
 	if event.is_action_pressed("player_action"):
 		_action_button_timer = 0
@@ -68,9 +69,8 @@ func _process(delta: float) -> void:
 	if self.velocity.length() > 0 and _carrying_item == null and _to_be_carrying:
 		_carrying_item = _current_action_target
 		_to_be_carrying = false
-		var collision_object = _get_collision_object(_carrying_item)
-		if collision_object:
-			raycast.add_exception(collision_object)
+		if _carrying_item:
+			raycast.add_exception(_carrying_item)
 
 
 func _physics_process(_delta: float) -> void:
@@ -95,11 +95,10 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	_update_action_indicator()
 	_update_carrying_item(cur_pos)
-	self.global_position = self.global_position.round()
 
 func _update_carrying_item(old_pos: Vector2) -> void:
 	var pos_delta = position - old_pos
-	if _carrying_item:
+	if _carrying_item and is_instance_valid(_carrying_item):
 		_carrying_item.global_position += pos_delta
 		raycast.rotation = global_position.angle_to_point(_carrying_item.global_position)
 
@@ -188,12 +187,6 @@ func _act_release():
 		if _action_button_timer < ACTION_TAP_TIME_THRESHOLD:
 			_act_tap()
 
-
-func _get_collision_object(parent : Node2D):
-	for child in parent.get_children():
-		if child is CollisionObject2D:
-			return child
-	return null
 
 func _try_drop_carrying_item():
 	if not raycast.is_colliding():

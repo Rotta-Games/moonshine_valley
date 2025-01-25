@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 class_name Bucket
 
 var _yeast_count: int = 0

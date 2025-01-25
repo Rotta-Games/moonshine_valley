@@ -12,6 +12,3 @@ script = ExtResource("1_ovdpq")
 
 [node name="ItemContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
-
-[node name="asd2" type="BoxContainer" parent="."]
-layout_mode = 2

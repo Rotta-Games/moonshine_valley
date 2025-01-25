@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://12xj50xlse6g"]
+[gd_scene load_steps=8 format=4 uid="uid://12xj50xlse6g"]
 
 [ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shop/shopkeeper.tscn" id="1_5huja"]
 [ext_resource type="Script" path="res://scenes/shop/s_market_shop.gd" id="1_etm76"]
 [ext_resource type="Texture2D" uid="uid://biqspkke1m827" path="res://assets/gfx/tileset.png" id="2_scuqp"]
 [ext_resource type="PackedScene" uid="uid://b0581a0ll1h7w" path="res://scenes/shop/shop_shelf.tscn" id="4_fr3hd"]
+[ext_resource type="PackedScene" uid="uid://cauh4shb5e7vt" path="res://scenes/objects/bucket.tscn" id="5_buffe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_it37c"]
 texture = ExtResource("2_scuqp")
@@ -150,3 +151,6 @@ position = Vector2(312, 90)
 
 [node name="SugarShelf" parent="." groups=["sugar_buy_zone"] instance=ExtResource("4_fr3hd")]
 position = Vector2(312, 170)
+
+[node name="Bucket" parent="." instance=ExtResource("5_buffe")]
+position = Vector2(153, 166)

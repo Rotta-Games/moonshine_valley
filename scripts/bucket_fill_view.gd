@@ -11,6 +11,9 @@ var _bucket : Bucket = null
 var _next_plup_tick = 0
 
 signal closed
+signal next_item
+signal previous_item
+signal use_item
 
 func _process(delta: float):
 	if Input.is_action_just_pressed("player_cancel"):
@@ -39,10 +42,10 @@ func _add_ingredient(sprite: TextureRect):
 	sprite.show()
 	var tween_pos = create_tween()
 	var tween_rot = create_tween()
-	tween_pos.tween_property(sprite, "position", _ingredient_target_location.position, 0.3)
-	tween_rot.tween_property(sprite, "rotation", randf_range(-1.0, 1.0), 0.3)
+	tween_pos.tween_property(sprite, "position", _ingredient_target_location.position, 0.25)
+	tween_rot.tween_property(sprite, "rotation", randf_range(-1.0, 1.0), 0.25)
 	await tween_pos.finished
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.05).timeout
 	sprite.hide()
 	_animation_playing = false
 
@@ -55,3 +58,11 @@ func add_sugar() -> void:
 func _on_player_bucket_inspected(bucket: Bucket) -> void:
 	_bucket = bucket
 	print(bucket.state)
+
+
+func _on_inventory_menu_item_used(id: Item.Id) -> void:
+	match id:
+		Item.Id.YEAST:
+			add_yeast()
+		Item.Id.SUGAR:
+			add_sugar()

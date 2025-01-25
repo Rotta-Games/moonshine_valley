@@ -15,8 +15,10 @@ description = "Tämä on ämpäri"
 ui_icon = SubResource("AtlasTexture_8wvoi")
 stackable = false
 stack_size = 0
+id = 2
 
 [node name="Yeast" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_hrfrk")
 item = SubResource("Resource_sp2a0")
 
