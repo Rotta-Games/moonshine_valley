@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://3dr8osphlt2c"]
+[gd_scene load_steps=9 format=4 uid="uid://12xj50xlse6g"]
 
 [ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shop/shopkeeper.tscn" id="1_5huja"]
 [ext_resource type="Script" path="res://scenes/shop/s_market_shop.gd" id="1_etm76"]
 [ext_resource type="Texture2D" uid="uid://biqspkke1m827" path="res://assets/gfx/tileset.png" id="2_scuqp"]
 [ext_resource type="PackedScene" uid="uid://1wmh7fl8b55w" path="res://scenes/player.tscn" id="3_n2wh6"]
-[ext_resource type="PackedScene" path="res://scenes/shop/shop_shelf.tscn" id="4_fr3hd"]
+[ext_resource type="PackedScene" uid="uid://b0581a0ll1h7w" path="res://scenes/shop/shop_shelf.tscn" id="4_fr3hd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_it37c"]
 texture = ExtResource("2_scuqp")

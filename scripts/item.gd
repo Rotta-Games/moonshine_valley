@@ -10,4 +10,4 @@ class_name Item
 # Link to the corresponding pickable item scene, if you need to drop the item back on the floor
 @export_file("*.tscn") var pickable_item_scene
 
-var _pickable_item_scene: PackedScene
+var item_scene: PackedScene
