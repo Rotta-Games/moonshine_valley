@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c8wam82o4tpa" path="res://scenes/views/bucket_fill_view.tscn" id="10_v3rci"]
 [ext_resource type="PackedScene" uid="uid://6y4yg73so1d5" path="res://scenes/gui/menu.tscn" id="11_iy8x7"]
 [ext_resource type="PackedScene" uid="uid://cwea1jg54vlwh" path="res://scenes/shop/dokmanni.tscn" id="12_hbpd2"]
+[ext_resource type="PackedScene" uid="uid://cq2d0vlsir6qy" path="res://scenes/views/bucket_observe_view.tscn" id="13_6qf0n"]
 [ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shop/shopkeeper.tscn" id="13_l4n53"]
 [ext_resource type="PackedScene" uid="uid://cdhkhaas52uc4" path="res://scenes/gui/help_text.tscn" id="13_nj5j4"]
 
@@ -121,6 +122,9 @@ offset_right = 104.0
 offset_bottom = 251.0
 scale = Vector2(1, 1)
 
+[node name="BucketObserveView" parent="WindowCanvasLayer" instance=ExtResource("13_6qf0n")]
+visible = false
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="HelpText" parent="HUD" instance=ExtResource("13_nj5j4")]
@@ -162,7 +166,9 @@ script = ExtResource("8_gsygp")
 [connection signal="bucket_sold" from="." to="Player" method="_on_bucket_sold"]
 [connection signal="bucket_inspected" from="Player" to="." method="_on_player_bucket_inspected"]
 [connection signal="bucket_inspected" from="Player" to="WindowCanvasLayer/BucketFillView" method="_on_player_bucket_inspected"]
+[connection signal="bucket_inspected" from="Player" to="WindowCanvasLayer/BucketObserveView" method="_on_player_bucket_inspected"]
 [connection signal="money_changed" from="Player" to="HUD/UI/HBoxContainer/MoneyAmount" method="_update_text"]
 [connection signal="body_entered" from="SellingArea" to="." method="_on_bucket_entered_selling_area"]
 [connection signal="closed" from="WindowCanvasLayer/BucketFillView" to="." method="_on_bucket_fill_view_closed"]
 [connection signal="item_used" from="WindowCanvasLayer/InventoryMenu" to="WindowCanvasLayer/BucketFillView" method="_on_inventory_menu_item_used"]
+[connection signal="closed" from="WindowCanvasLayer/BucketObserveView" to="." method="_on_bucket_fill_view_closed"]
