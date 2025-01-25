@@ -162,6 +162,7 @@ text = "1M"
 script = ExtResource("8_gsygp")
 
 [node name="Menu" parent="HUD" instance=ExtResource("11_iy8x7")]
+visible = false
 
 [connection signal="bucket_sold" from="." to="Player" method="_on_bucket_sold"]
 [connection signal="bucket_inspected" from="Player" to="." method="_on_player_bucket_inspected"]
