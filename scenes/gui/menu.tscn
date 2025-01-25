@@ -26,9 +26,9 @@ vertical = true
 layout_mode = 2
 text = "RESUME"
 
-[node name="OptionsButton" type="Button" parent="Control/BoxContainer"]
+[node name="HelpButton" type="Button" parent="Control/BoxContainer"]
 layout_mode = 2
-text = "OPTIONS"
+text = "HELP"
 
 [node name="QuitButton" type="Button" parent="Control/BoxContainer"]
 layout_mode = 2
