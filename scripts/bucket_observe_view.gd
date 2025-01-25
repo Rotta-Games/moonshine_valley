@@ -39,7 +39,6 @@ func _check_bucket_progress(progress):
 	if not timer.is_stopped():
 		return
 	var next_plup = 4 * exp(1.99 * progress)
-	print(next_plup)
 	timer.start(next_plup)
 		
 func _check_frame(delta: float):

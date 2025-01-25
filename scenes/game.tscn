@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6m0eoberdjia"]
+[gd_scene load_steps=20 format=3 uid="uid://b6m0eoberdjia"]
 
 [ext_resource type="PackedScene" uid="uid://bxvyqs010obxu" path="res://scenes/world.tscn" id="1_gphd6"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_qbbn2"]
@@ -60,8 +60,9 @@ position = Vector2(45, 776)
 [node name="SpawnPoint" type="Node2D" parent="DokmanniShop"]
 position = Vector2(223, 238)
 
-[node name="Player" parent="." instance=ExtResource("4_kw61d")]
+[node name="Player" parent="." node_paths=PackedStringArray("bucket_container") instance=ExtResource("4_kw61d")]
 position = Vector2(132, 136)
+bucket_container = NodePath("../Buckets")
 inventory = SubResource("Resource_2rr4b")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
@@ -103,6 +104,8 @@ position = Vector2(41, 27)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SellingArea"]
 position = Vector2(40, 32)
 shape = SubResource("RectangleShape2D_h1kce")
+
+[node name="Buckets" type="Node2D" parent="."]
 
 [node name="WindowCanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 2
