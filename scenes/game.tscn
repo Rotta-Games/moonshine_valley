@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6m0eoberdjia"]
+[gd_scene load_steps=11 format=3 uid="uid://b6m0eoberdjia"]
 
 [ext_resource type="PackedScene" uid="uid://bxvyqs010obxu" path="res://scenes/world.tscn" id="1_gphd6"]
 [ext_resource type="PackedScene" uid="uid://ctmnc28k3xuye" path="res://scenes/home/home.tscn" id="2_h8pvb"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://1wmh7fl8b55w" path="res://scenes/player.tscn" id="4_kw61d"]
 [ext_resource type="Script" path="res://scenes/player_camera.gd" id="5_dcmbd"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="5_k53qs"]
-[ext_resource type="PackedScene" uid="uid://dfasmvevnkqlv" path="res://scenes/teleport.tscn" id="6_jmxoo"]
+[ext_resource type="PackedScene" uid="uid://1w5lucexjrxa" path="res://scenes/teleport.tscn" id="6_jmxoo"]
 [ext_resource type="Script" path="res://scripts/money_label.gd" id="8_gsygp"]
 
 [sub_resource type="Resource" id="Resource_2rr4b"]
@@ -91,8 +91,5 @@ label_settings = SubResource("LabelSettings_w3iyl")
 layout_mode = 2
 text = "1M"
 script = ExtResource("8_gsygp")
-
-[node name="Bucket" parent="." instance=ExtResource("8_5wrw0")]
-position = Vector2(199, 175)
 
 [connection signal="money_changed" from="Player" to="CanvasLayer/UI/HBoxContainer/MoneyAmount" method="_update_text"]
