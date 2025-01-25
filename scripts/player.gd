@@ -17,6 +17,8 @@ const JUMP_VELOCITY = -400.0
 const ACTION_HOLD_TIME_THRESHOLD = 0.05
 const ACTION_TAP_TIME_THRESHOLD = 0.8
 
+const START_MOENY = 50_00
+
 enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, ACT_BUCKET}
 
 var _current_action: Action = Action.NONE
@@ -29,7 +31,7 @@ var _ray_length : int = 0
 var _action_button_timer: float = false
 var _action_button_hold: bool = false
 
-var money_amount_cents: int = 5_00: set = _update_money
+var money_amount_cents: int: set = _update_money
 
 var yeast_price_cents: int = 25
 var sugar_price_cents: int = 1_50
@@ -39,7 +41,7 @@ var bucket_price_cents: int = 10_00
 
 func _ready():
 	_ray_length = int(raycast.target_position.x)
-	money_amount_cents = 5_00
+	money_amount_cents = START_MOENY
 
 
 func _input(event):
@@ -127,6 +129,8 @@ func _on_action_indicator_area_2d_area_shape_entered(area_rid: RID, area: Area2D
 		_current_action = Action.BUY_YEAST
 	if group == "sugar_buy_zone":
 		_current_action = Action.BUY_SUGAR
+	if group == "bucket_buy_zone":
+		_current_action = Action.BUY_BUCKET
 	if group == "bucket":
 		_current_action = Action.ACT_BUCKET
 		
