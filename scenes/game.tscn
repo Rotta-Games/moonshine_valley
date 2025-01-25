@@ -12,6 +12,9 @@
 script = ExtResource("5_k53qs")
 max_size = 10
 
+[sub_resource type="LabelSettings" id="LabelSettings_w3iyl"]
+font_size = 14
+
 [node name="Game" type="Node2D"]
 
 [node name="World" parent="." instance=ExtResource("1_gphd6")]
@@ -44,3 +47,32 @@ target = NodePath("../../SMarketShop/SpawnPoint")
 [node name="FromShopTeleport" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
 position = Vector2(224, 624)
 target = NodePath("../../World/ShopSpawnPoint")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 56.0
+offset_bottom = 21.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -19.5
+offset_right = 164.0
+offset_bottom = 20.5
+grow_vertical = 2
+rotation = 0.0174533
+
+[node name="MoneyLabel" type="Label" parent="CanvasLayer/UI/HBoxContainer"]
+layout_mode = 2
+text = "Fyffe:"
+label_settings = SubResource("LabelSettings_w3iyl")
+
+[node name="MoneyAmount" type="Label" parent="CanvasLayer/UI/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1M"
