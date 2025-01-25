@@ -40,7 +40,7 @@ position = Vector2(0, 352)
 position = Vector2(223, 232)
 
 [node name="Player" parent="." instance=ExtResource("4_kw61d")]
-position = Vector2(234, 477)
+position = Vector2(132, 136)
 inventory = SubResource("Resource_2rr4b")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
