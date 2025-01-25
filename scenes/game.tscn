@@ -158,5 +158,4 @@ script = ExtResource("8_gsygp")
 [connection signal="money_changed" from="Player" to="HUD/UI/HBoxContainer/MoneyAmount" method="_update_text"]
 [connection signal="body_entered" from="SellingArea/Area2D" to="." method="_on_bucket_entered_selling_area"]
 [connection signal="closed" from="WindowCanvasLayer/BucketFillView" to="." method="_on_bucket_fill_view_closed"]
-[connection signal="closed" from="WindowCanvasLayer/BucketFillView" to="WindowCanvasLayer/InventoryMenu" method="_on_bucket_fill_view_closed"]
 [connection signal="item_used" from="WindowCanvasLayer/InventoryMenu" to="WindowCanvasLayer/BucketFillView" method="_on_inventory_menu_item_used"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://cwea1jg54vlwh"]
+[gd_scene load_steps=7 format=4 uid="uid://cwea1jg54vlwh"]
 
 [ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shop/shopkeeper.tscn" id="2_u5nc6"]
 [ext_resource type="Texture2D" uid="uid://biqspkke1m827" path="res://assets/gfx/tileset.png" id="3_bh5tm"]
-[ext_resource type="PackedScene" path="res://scenes/shop/shop_shelf.tscn" id="4_hn2dg"]
+[ext_resource type="TileSet" uid="uid://bw67ndvvffmjj" path="res://assets/objects.tres" id="4_cl3p8"]
+[ext_resource type="PackedScene" uid="uid://cq7f4obgtlehj" path="res://scenes/shop/shop_shelf.tscn" id="4_hn2dg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_it37c"]
 texture = ExtResource("3_bh5tm")
@@ -146,5 +147,15 @@ tile_set = SubResource("TileSet_qi08l")
 [node name="BucketShelf1" parent="." groups=["bucket_buy_zone"] instance=ExtResource("4_hn2dg")]
 position = Vector2(312, 90)
 
+[node name="TileMapLayer" type="TileMapLayer" parent="BucketShelf1"]
+position = Vector2(0, 5)
+tile_map_data = PackedByteArray("AAD5/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD6////AAAAAAAAAAD5////AAAAAAAAAAD8/wAAAAAAAAAAAAD8////AAAAAAAAAAD9////AAAAAAAAAAD9/wAAAAAAAAAAAAD//wAAAAAAAAAAAAD/////AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAADAP//AAAAAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAP//AAAAAAAAAAA=")
+tile_set = ExtResource("4_cl3p8")
+
 [node name="BucketShelf2" parent="." groups=["bucket_buy_zone"] instance=ExtResource("4_hn2dg")]
 position = Vector2(312, 170)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="BucketShelf2"]
+position = Vector2(0, 5)
+tile_map_data = PackedByteArray("AAD5/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD6////AAAAAAAAAAD5////AAAAAAAAAAD8/wAAAAAAAAAAAAD8////AAAAAAAAAAD9////AAAAAAAAAAD9/wAAAAAAAAAAAAD//wAAAAAAAAAAAAD/////AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAADAP//AAAAAAAAAAAFAP//AAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAP//AAAAAAAAAAA=")
+tile_set = ExtResource("4_cl3p8")
