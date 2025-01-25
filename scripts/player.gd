@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-signal money_changed
+signal money_changed(amount: int)
 
 @onready var action_indicator : Sprite2D = $"ActionIndicatorSprite"
 
