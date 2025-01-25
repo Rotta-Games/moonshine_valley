@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1m22va7uwgtf"]
+
+[ext_resource type="Script" path="res://scripts/inventory_menu.gd" id="1_ovdpq"]
+
+[node name="InventoryMenu" type="BoxContainer"]
+offset_left = 140.0
+offset_top = 235.0
+offset_right = 144.0
+offset_bottom = 235.0
+scale = Vector2(25.8, 10.48)
+script = ExtResource("1_ovdpq")
+
+[node name="ItemContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="asd2" type="BoxContainer" parent="."]
+layout_mode = 2

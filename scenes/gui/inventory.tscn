@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://d173pu0c146ob"]
+[gd_scene load_steps=2 format=3 uid="uid://s8xk8vu68k4n"]
 
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="1_luslx"]
 
@@ -6,9 +6,17 @@
 rotation = 0.000459046
 script = ExtResource("1_luslx")
 
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_left = 92.0
+offset_top = 230.0
+offset_right = 397.0
+offset_bottom = 270.0
+
 [node name="BoxContainer" type="BoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 90.0363
+offset_top = 78.9587
+offset_right = 362.036
+offset_bottom = 118.959
 
 [node name="Label" type="Label" parent="BoxContainer"]
 layout_mode = 2

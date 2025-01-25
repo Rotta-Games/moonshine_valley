@@ -14,13 +14,15 @@ signal money_changed(amount: int)
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 
-const ACTION_HOLD_TIME_THRESHOLD = 0.1
+const ACTION_HOLD_TIME_THRESHOLD = 0.05
 const ACTION_TAP_TIME_THRESHOLD = 0.8
 
 enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, ACT_BUCKET}
 
 var _current_action: Action = Action.NONE
 var _current_action_target: Node2D = null
+
+var _to_be_carrying: bool = false
 var _carrying_item: Node2D = null
 var _ray_length : int = 0
 
@@ -61,9 +63,15 @@ func _process(delta: float) -> void:
 			_action_button_hold = true
 			_act_hold()
 
+	if self.velocity.length() > 0 and _carrying_item == null and _to_be_carrying:
+		_carrying_item = _current_action_target
+		_to_be_carrying = false
+		var collision_object = _get_collision_object(_carrying_item)
+		if collision_object:
+			raycast.add_exception(collision_object)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var move_speed = SPEED
 	if Input.is_action_pressed("debug_run"):
 		move_speed *= 2
@@ -124,31 +132,8 @@ func _on_action_indicator_area_2d_area_shape_entered(area_rid: RID, area: Area2D
 		
 func _on_action_indicator_area_2d_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	_current_action = Action.NONE
-
-
-func _new_yeast():
-	var item = Item.new()
-	item.name = "Hiiva"
-	item.description = "Hiivaa"
-	item.item_scene = yeast_scene
-	return item
-
-
-func _new_bucket():
-	var item = Item.new()
-	item.name = "Änpäri"
-	item.description = "Tyhjä"
-	item.item_scene = bucket_scene
-	return item
-
-
-func _new_sugar():
-	var item = Item.new()
-	item.name = "Hiiva"
-	item.description = "Hiivaa"
-	item.item_scene = yeast_scene
-	return item
-
+	_current_action_target = null
+	_to_be_carrying = false
 
 func _act_tap():
 	match _current_action:
@@ -157,22 +142,25 @@ func _act_tap():
 		Action.BUY_YEAST:
 			if money_amount_cents < yeast_price_cents:
 				return
-			var yeast = self._new_yeast()
-			var ok = inventory.add_item(yeast, 1)
+
+			var yeast_item = yeast_scene.instantiate()
+			var ok = inventory.add_item(yeast_item.item, 1)	
+			
 			if ok:
 				money_amount_cents -= yeast_price_cents
+			
 		Action.BUY_SUGAR:
 			if money_amount_cents < sugar_price_cents:
 				return
-			var sugar = self._new_sugar()
-			var ok = inventory.add_item(sugar, 1)
+			var sugar_item = sugar_scene.instantiate()
+			var ok = inventory.add_item(sugar_item.item, 1)	
 			if ok:
 				money_amount_cents -= sugar_price_cents
 		Action.BUY_BUCKET:
 			if money_amount_cents < bucket_price_cents:
 				return
-			var bucket = self._new_bucket()
-			var ok = inventory.add_item(bucket, 1)
+			var bucket_item = bucket_scene.instantiate()
+			var ok = inventory.add_item(bucket_item.item, 1)	
 			if ok:
 				money_amount_cents -= bucket_price_cents
 		Action.ACT_BUCKET:
@@ -183,10 +171,7 @@ func _act_hold():
 	match _current_action:
 		Action.ACT_BUCKET:
 			if _carrying_item == null:
-				_carrying_item = _current_action_target
-				var collision_object = _get_collision_object(_carrying_item)
-				if collision_object:
-					raycast.add_exception(collision_object)
+				_to_be_carrying = true
 
 					
 func _act_release():
