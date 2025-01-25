@@ -3,7 +3,7 @@ extends BoxContainer
 @onready var inventory_item = preload("res://scenes/gui/inventory_item.tscn")
 @onready var item_container = $ItemContainer
 
-var _selected_index = 0
+var _selected_index = -1
 
 signal item_used(id: Item.Id)
 
@@ -21,11 +21,13 @@ func _process(delta):
 		_selected_index = posmod((_selected_index + 1), len(item_container.get_children()))
 	if Input.is_action_just_pressed("move_left"):
 		_selected_index = posmod((_selected_index - 1), len(item_container.get_children()))
-
-	if _prev_index != _selected_index:
-		var old_selection = item_container.get_child(_prev_index)
+		
+	if _prev_index != _selected_index or _selected_index == -1:
+		_deselect_all_items()
+		if _selected_index == -1:
+			_selected_index = 0
+		item_container.get_child(_selected_index).set_active(true)
 		var new_selection = item_container.get_child(_selected_index)
-		old_selection.set_active(false)
 		new_selection.set_active(true)
 
 	if Input.is_action_just_pressed("player_action"):
@@ -34,6 +36,10 @@ func _process(delta):
 		if item_count > 0:
 			player.inventory.remove_item(item, 1)
 			item_used.emit(item.id)
+
+func _deselect_all_items():
+	for item in item_container.get_children():
+		item.set_active(false)
 
 func _on_item_changed(item: Item):
 	set_inventory(player.inventory.inventory)
@@ -51,7 +57,8 @@ func set_inventory(itemStacks):
 		itemEntity.item = itemStack.item
 		item_container.add_child(itemEntity)
 		
-	if len(itemStacks) > 0:
-		if len(itemStacks) <= _selected_index:
-			_selected_index = len(itemStacks) - 1
-		item_container.get_child(_selected_index).set_active(true)
+
+
+func _on_bucket_fill_view_closed() -> void:
+	_deselect_all_items()
+	_selected_index = -1

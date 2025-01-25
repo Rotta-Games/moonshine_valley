@@ -5,7 +5,6 @@ extends Control
 @onready var _ingredient_target_location: Node2D = $"IngredientTargetPosition"
 @onready var _ingredient_start_location: Node2D = $"IngredientStartPosition"
 
-var _animation_playing: bool = false
 var _rng : RandomNumberGenerator = RandomNumberGenerator.new()
 var _bucket : Bucket = null
 var _next_plup_tick = 0
@@ -21,44 +20,40 @@ func _process(delta: float):
 		closed.emit()
 		return
 		
-	if _bucket and _is_plup_time():
-		_play_plup_sound()
-		
-func _is_plup_time() -> bool:
-	return false
-	
-func _play_plup_sound():
-	pass
-		
-func _reset_ingredient(sprite: TextureRect):
-	sprite.position = _ingredient_start_location.position
-	sprite.rotation = _rng.randf_range(-1.0, 1.0)
+func _get_ingredient(sprite: TextureRect):
+	var copy = sprite.duplicate()
+	copy.position = _ingredient_start_location.position
+	copy.rotation = _rng.randf_range(-1.0, 1.0)
+	add_child(copy)
+	return copy
 	
 func _add_ingredient(sprite: TextureRect):
-	if _animation_playing:
-		return
-	_animation_playing = true
-	_reset_ingredient(sprite)
-	sprite.show()
+	var ingredient = _get_ingredient(sprite)
+	ingredient.show()
 	var tween_pos = create_tween()
 	var tween_rot = create_tween()
-	tween_pos.tween_property(sprite, "position", _ingredient_target_location.position, 0.25)
-	tween_rot.tween_property(sprite, "rotation", randf_range(-1.0, 1.0), 0.25)
+	tween_pos.tween_property(ingredient, "position", _ingredient_target_location.position, 0.25)
+	tween_rot.tween_property(ingredient, "rotation", randf_range(-1.0, 1.0), 0.25)
 	await tween_pos.finished
 	await get_tree().create_timer(0.05).timeout
-	sprite.hide()
-	_animation_playing = false
+	ingredient.queue_free()
 
 func add_yeast() -> void:
+	if not _bucket:
+		printerr("ei oo ämpäriä perkele")
+		return
+	_bucket.add_yeast(1)
 	_add_ingredient(_yeast_sprite)
 
 func add_sugar() -> void:
+	if not _bucket:
+		printerr("ei oo ämpäriä perkele")
+		return
+	_bucket.add_sugar(1)
 	_add_ingredient(_sugar_sprite)
 
 func _on_player_bucket_inspected(bucket: Bucket) -> void:
 	_bucket = bucket
-	print(bucket.state)
-
 
 func _on_inventory_menu_item_used(id: Item.Id) -> void:
 	match id:

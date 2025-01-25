@@ -28,20 +28,20 @@ offset_bottom = 40.0
 texture = SubResource("AtlasTexture_cx0c6")
 
 [node name="YeastTexture" type="TextureRect" parent="TextureRect"]
-visible = false
 layout_mode = 0
-offset_left = -356.0
+offset_left = -445.0
 offset_top = 143.0
-offset_right = -316.0
-offset_bottom = 183.0
+offset_right = -428.0
+offset_bottom = 160.0
 scale = Vector2(0.6, 0.6)
 texture = SubResource("AtlasTexture_xfquj")
 
 [node name="SugarTexture" type="TextureRect" parent="TextureRect"]
-visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -456.0
+offset_top = 71.0
+offset_right = -416.0
+offset_bottom = 111.0
 scale = Vector2(0.6, 0.6)
 texture = SubResource("AtlasTexture_k8f7u")
 
