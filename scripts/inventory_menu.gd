@@ -24,9 +24,8 @@ func set_inventory(itemStacks):
 	var id = 0
 	for itemStack in itemStacks:
 		var itemSprite= itemStack.item.ui_icon
-		var texture = ImageTexture.create_from_image(itemSprite)
 		var itemEntity = inventory_item.instantiate()
-		itemEntity.get_node("TextureRect").set_texture(texture)
+		itemEntity.get_node("TextureRect").set_texture(itemStack.item.ui_icon)
 		itemEntity.get_node("QuantityText").set_text(str(itemStack.quantity))
 		element.add_child(itemEntity)
 		id += 1
