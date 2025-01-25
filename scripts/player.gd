@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
+
+signal money_changed
+
 @onready var action_indicator : Sprite2D = $"ActionIndicatorSprite"
 
 @onready var yeast_scene = preload("res://scenes/items/yeast.tscn")
 @onready var sugar_scene = preload("res://scenes/items/sugar.tscn")
 @onready var bucket_scene = preload("res://scenes/items/bucket.tscn")
-
-@onready var money_label = %MoneyAmount
 
 @onready var raycast : RayCast2D = $"RayCast2D"
 
@@ -25,7 +26,7 @@ var _ray_length : int = 0
 var _action_button_timer: float = false
 var _action_button_hold: bool = false
 
-var money_amount_cents: int = 5_00: set = _update_money_label
+var money_amount_cents: int = 5_00: set = _update_money
 
 var yeast_price_cents: int = 25
 var sugar_price_cents: int = 1_50
@@ -35,7 +36,7 @@ var bucket_price_cents: int = 10_00
 
 func _ready():
 	_ray_length = int(raycast.target_position.x)
-	money_label.text = str(money_amount_cents/100.0) + "€"
+	money_amount_cents = 5_00
 
 
 func _input(event):
@@ -212,6 +213,6 @@ func _try_drop_carrying_item():
 		raycast.clear_exceptions()
 
 
-func _update_money_label(value) -> void:
-	money_label.text = str(value/100.0) + "€"
+func _update_money(value) -> void:
 	money_amount_cents = value
+	money_changed.emit(money_amount_cents)
