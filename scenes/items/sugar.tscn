@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvn375rwfep4y"]
+
+[ext_resource type="Script" path="res://scripts/yeast.gd" id="1_4xgqd"]
+[ext_resource type="Texture2D" uid="uid://pwk40xte5av0" path="res://assets/gfx/objects.png" id="2_0p8fh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wvoi"]
+atlas = ExtResource("2_0p8fh")
+region = Rect2(31.5956, 0.15697, 16.2217, 16.845)
+
+[node name="Yeast" type="Node2D"]
+script = ExtResource("1_4xgqd")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_8wvoi")
+centered = false
