@@ -6,6 +6,8 @@ extends CharacterBody2D
 @onready var sugar_scene = preload("res://scenes/items/sugar.tscn")
 @onready var bucket_scene = preload("res://scenes/items/bucket.tscn")
 
+@onready var money_label = %MoneyAmount
+
 @onready var raycast : RayCast2D = $"RayCast2D"
 
 const SPEED = 150.0
@@ -21,10 +23,18 @@ var _ray_length : int = 0
 
 var _action_button_frame_count: int = false
 
+var money_amount_cents: int = 5_00: set = _update_money_label
+
+var yeast_price_cents: int = 25
+var sugar_price_cents: int = 1_50
+var bucket_price_cents: int = 10_00
+
 @export var inventory: Inventory
 
 func _ready():
-	_ray_length = raycast.target_position.x
+	_ray_length = int(raycast.target_position.x)
+	money_label.text = str(money_amount_cents/100.0) + "€"
+
 
 func _physics_process(delta: float) -> void:
 	var move_speed = SPEED
@@ -125,14 +135,26 @@ func _act_press():
 		Action.NONE:
 			return
 		Action.BUY_YEAST:
+			if money_amount_cents < yeast_price_cents:
+				return
 			var yeast = self._new_yeast()
-			inventory.add_item(yeast, 1)	
+			var ok = inventory.add_item(yeast, 1)
+			if ok:
+				money_amount_cents -= yeast_price_cents
 		Action.BUY_SUGAR:
+			if money_amount_cents < sugar_price_cents:
+				return
 			var sugar = self._new_sugar()
-			inventory.add_item(sugar, 1)
+			var ok = inventory.add_item(sugar, 1)
+			if ok:
+				money_amount_cents -= sugar_price_cents
 		Action.BUY_BUCKET:
+			if money_amount_cents < bucket_price_cents:
+				return
 			var bucket = self._new_bucket()
-			inventory.add_item(bucket, 1)
+			var ok = inventory.add_item(bucket, 1)
+			if ok:
+				money_amount_cents -= bucket_price_cents
 		Action.ACT_BUCKET:
 			if _carrying_item == null and _action_button_frame_count >= DRAG_FRAMES_THRESHOLD:
 				_carrying_item = _current_action_target
@@ -166,3 +188,8 @@ func _try_drop_carrying_item():
 		_current_action_target = null
 		_current_action = Action.NONE
 		raycast.clear_exceptions()
+
+
+func _update_money_label(value) -> void:
+	money_label.text = str(value/100.0) + "€"
+	money_amount_cents = value
