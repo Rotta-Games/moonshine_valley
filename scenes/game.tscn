@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6m0eoberdjia"]
+[gd_scene load_steps=16 format=3 uid="uid://b6m0eoberdjia"]
 
 [ext_resource type="PackedScene" uid="uid://bxvyqs010obxu" path="res://scenes/world.tscn" id="1_gphd6"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_qbbn2"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://1wmh7fl8b55w" path="res://scenes/player.tscn" id="4_kw61d"]
 [ext_resource type="Script" path="res://scenes/player_camera.gd" id="5_dcmbd"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="5_k53qs"]
-[ext_resource type="PackedScene" uid="uid://dfasmvevnkqlv" path="res://scenes/teleport.tscn" id="6_jmxoo"]
+[ext_resource type="PackedScene" path="res://scenes/teleport.tscn" id="6_jmxoo"]
 [ext_resource type="Script" path="res://scripts/money_label.gd" id="8_gsygp"]
 [ext_resource type="PackedScene" uid="uid://c1m22va7uwgtf" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
 [ext_resource type="PackedScene" uid="uid://c8wam82o4tpa" path="res://scenes/views/bucket_fill_view.tscn" id="10_v3rci"]
@@ -134,27 +134,7 @@ layout_mode = 2
 text = "1M"
 script = ExtResource("8_gsygp")
 
-[node name="WindowCanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="BucketFillView" parent="WindowCanvasLayer" instance=ExtResource("10_v3rci")]
-process_mode = 2
-visible = false
-offset_left = 280.0
-offset_top = 59.0
-offset_right = 280.0
-offset_bottom = 59.0
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
 [node name="Menu" parent="HUD" instance=ExtResource("11_iy8x7")]
-
-[node name="InventoryMenu" parent="HUD" instance=ExtResource("8_i3gep")]
-z_index = 9
-offset_left = 100.0
-offset_top = 251.0
-offset_right = 104.0
-offset_bottom = 251.0
-scale = Vector2(1, 1)
 
 [connection signal="bucket_inspected" from="Player" to="." method="_on_player_bucket_inspected"]
 [connection signal="bucket_inspected" from="Player" to="WindowCanvasLayer/BucketFillView" method="_on_player_bucket_inspected"]
