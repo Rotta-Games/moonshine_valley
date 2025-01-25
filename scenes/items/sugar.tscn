@@ -15,6 +15,7 @@ description = "Tämä on sokeria"
 ui_icon = SubResource("AtlasTexture_8wvoi")
 stackable = true
 stack_size = 99
+id = 1
 
 [node name="Yeast" type="Node2D"]
 script = ExtResource("1_4xgqd")

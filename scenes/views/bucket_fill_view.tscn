@@ -46,7 +46,7 @@ scale = Vector2(0.6, 0.6)
 texture = SubResource("AtlasTexture_k8f7u")
 
 [node name="IngredientStartPosition" type="Node2D" parent="."]
-position = Vector2(108, 160)
+position = Vector2(116, 163)
 
 [node name="IngredientTargetPosition" type="Node2D" parent="."]
-position = Vector2(75, 67)
+position = Vector2(72, 90)
