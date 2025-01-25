@@ -199,3 +199,15 @@ func _try_drop_carrying_item():
 func _update_money(value) -> void:
 	money_amount_cents = value
 	money_changed.emit(money_amount_cents)
+
+
+func _on_bucket_sold(bucket_state: Bucket.State) -> void:
+	match bucket_state:
+		Bucket.State.READY:
+			money_amount_cents += 50_00
+		Bucket.State.SPOILED:
+			money_amount_cents += 1_00
+		Bucket.State.FERMENTING:
+			money_amount_cents += 5_00
+		Bucket.State.MISSING_INGREDIENTS:
+			money_amount_cents += 0_50

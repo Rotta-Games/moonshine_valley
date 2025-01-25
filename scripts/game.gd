@@ -23,6 +23,5 @@ func _on_bucket_fill_view_closed() -> void:
 
 func _on_bucket_entered_selling_area(body: Node2D) -> void:
 	if body is Bucket:
-		print("VOITIT PELIN :D")
 		bucket_sold.emit(body.state)
 		body.queue_free()
