@@ -3,13 +3,15 @@ extends CharacterBody2D
 @onready var action_indicator : Sprite2D = $"ActionIndicatorSprite"
 
 @onready var yeast_scene = preload("res://scenes/items/yeast.tscn")
+@onready var sugar_scene = preload("res://scenes/items/sugar.tscn")
+@onready var bucket_scene = preload("res://scenes/items/bucket.tscn")
 
 @onready var raycast : RayCast2D = $"RayCast2D"
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 
-enum Action {NONE, BUY_YEAST, BUY_SUGAR, PICKUP}
+enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, PICKUP}
 
 var _current_action: Action = Action.NONE
 var _current_action_target: Node2D = null
@@ -87,7 +89,32 @@ func _on_action_indicator_area_2d_area_shape_entered(area_rid: RID, area: Area2D
 		
 func _on_action_indicator_area_2d_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	_current_action = Action.NONE
-	
+
+
+func _new_yeast():
+	var item = Item.new()
+	item.name = "Hiiva"
+	item.description = "Hiivaa"
+	item.item_scene = yeast_scene
+	return item
+
+
+func _new_bucket():
+	var item = Item.new()
+	item.name = "Änpäri"
+	item.description = "Tyhjä"
+	item.item_scene = bucket_scene
+	return item
+
+
+func _new_sugar():
+	var item = Item.new()
+	item.name = "Hiiva"
+	item.description = "Hiivaa"
+	item.item_scene = yeast_scene
+	return item
+
+
 func _act():
 	# If carrying an item, need to drop it first
 	if _carrying_item:
@@ -97,13 +124,14 @@ func _act():
 		Action.NONE:
 			return
 		Action.BUY_YEAST:
-			var yeast = Item.new()
-			yeast.name = "Hiiva"
-			yeast.description = "Hiivaa"
-			yeast.item_scene = yeast_scene
+			var yeast = self._new_yeast()
 			inventory.add_item(yeast, 1)	
 		Action.BUY_SUGAR:
-			printerr("DEWA: OSTA SITÄ SOKERIA :DDD")		
+			var sugar = self._new_sugar()
+			inventory.add_item(sugar, 1)
+		Action.BUY_BUCKET:
+			var bucket = self._new_bucket()
+			inventory.add_item(bucket, 1)
 		Action.PICKUP:
 			if _carrying_item == null:
 				_carrying_item = _current_action_target
