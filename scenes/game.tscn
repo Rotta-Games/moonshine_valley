@@ -71,7 +71,8 @@ position = Vector2(224, 624)
 target = NodePath("../../World/ShopSpawnPoint")
 
 [node name="ToHome" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
-position = Vector2(169, 113)
+position = Vector2(176, 123)
+scale = Vector2(1.52, 1)
 target = NodePath("../../Home/SpawnPoint")
 
 [node name="FromHome" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
