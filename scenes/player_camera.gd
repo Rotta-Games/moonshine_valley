@@ -17,5 +17,3 @@ func _process(delta: float) -> void:
 		self.position = target.position
 	else:
 		self.position = lerp(self.position, target.position, delta * 10)
-	self.position.x = floor(self.position.x)
-	self.position.y = floor(self.position.y)

@@ -165,6 +165,7 @@ func _act_tap():
 				money_amount_cents -= bucket_price_cents
 		Action.ACT_BUCKET:
 			bucket_inspected.emit(_current_action_target as Bucket)
+			_to_be_carrying = false
 
 func _act_hold():
 	match _current_action:
