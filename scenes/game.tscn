@@ -171,6 +171,7 @@ visible = false
 [node name="GameBackgroundMusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_75pwq")
 autoplay = true
+parameters/looping = true
 
 [connection signal="bucket_sold" from="." to="Player" method="_on_bucket_sold"]
 [connection signal="bucket_inspected" from="Player" to="." method="_on_player_bucket_inspected"]
