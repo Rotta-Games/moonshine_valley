@@ -30,6 +30,7 @@ yeast_buy_zone=""
 sugar_buy_zone=""
 bucket=""
 bucket_buy_zone=""
+bucket_fill_zone=""
 
 [gui]
 

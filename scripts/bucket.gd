@@ -5,10 +5,10 @@ var _yeast_count: int = 0
 var _sugar_count: int = 0
 var _water_count: int = 0
 
-var _fermentation_start_time: int = 0
+var _fermentation_time: float = -1.0
 
-const READY_TIME = 60*1000
-const SPOILED_TIME = 300*1000
+const READY_TIME = 180.0
+const SPOILED_TIME = 360.0
 
 enum State {MISSING_INGREDIENTS, FERMENTING, READY, SPOILED}
 var state : State = State.MISSING_INGREDIENTS
@@ -22,22 +22,27 @@ func _process(delta: float) -> void:
 	if state == State.SPOILED:
 		return
 	
-	if _fermentation_ongoing() and state == State.MISSING_INGREDIENTS:
-		_fermentation_start_time = Time.get_ticks_msec()
+	if _fermentation_time >= 0.0:
+		_fermentation_time += delta
+		
+	if fermentation_ongoing() and state == State.MISSING_INGREDIENTS:
+		_fermentation_time = 0.00001
 		state = State.FERMENTING
 	
-	var fermentation_time = Time.get_ticks_msec() - _fermentation_start_time
-	if fermentation_time > SPOILED_TIME:
+	if _fermentation_time > SPOILED_TIME:
 		_set_spoiled()
-	elif fermentation_time > READY_TIME:
+	elif _fermentation_time > READY_TIME:
 		_set_ready()
 	
-func _fermentation_ongoing() -> bool:
+func fermentation_ongoing() -> bool:
 	return _yeast_count > 0 and _sugar_count > 0 and _water_count > 0
+	
+func fermentation_progress() -> float:
+	return _fermentation_time / READY_TIME # max 1.0
 	
 func _set_ready():
 	state = State.READY
-
+	
 func _set_spoiled():
 	state = State.SPOILED
 

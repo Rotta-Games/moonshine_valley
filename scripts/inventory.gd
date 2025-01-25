@@ -75,7 +75,6 @@ func add_item(item: Item, quantity:=1)->bool:
 		
 		
 		item_changed.emit(item)
-		print(inventory)
 		return true
 	else:
 		# There was not enough room

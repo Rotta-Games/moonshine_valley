@@ -9,10 +9,11 @@ signal pause_button_pressed()
 @onready var yeast_scene = preload("res://scenes/items/yeast.tscn")
 @onready var sugar_scene = preload("res://scenes/items/sugar.tscn")
 @onready var bucket_scene = preload("res://scenes/items/bucket.tscn")
-
+@onready var bucket_object_scene = preload("res://scenes/objects/bucket.tscn")
 @onready var raycast : RayCast2D = $"RayCast2D"
-
 @onready var help_text = $"../HUD/HelpText"
+
+@export var bucket_container: Node2D
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
@@ -22,7 +23,7 @@ const ACTION_TAP_TIME_THRESHOLD = 0.8
 
 const START_MOENY = 50_00
 
-enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, ACT_BUCKET}
+enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, ACT_BUCKET, FILL_BUCKET}
 
 var _current_action: Action = Action.NONE
 var _current_action_target: Node2D = null
@@ -143,6 +144,8 @@ func _on_action_indicator_area_2d_area_shape_entered(area_rid: RID, area: Area2D
 		_current_action = Action.BUY_BUCKET
 	if group == "bucket":
 		_current_action = Action.ACT_BUCKET
+	if group == "bucket_fill_zone":
+		_current_action = Action.FILL_BUCKET
 		
 func _on_action_indicator_area_2d_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	_current_action = Action.NONE
@@ -177,6 +180,13 @@ func _act_tap():
 		Action.ACT_BUCKET:
 			bucket_inspected.emit(_current_action_target as Bucket)
 			_to_be_carrying = false
+		Action.FILL_BUCKET:
+			if inventory.get_item_amount(bucket_item.item) > 0:
+				var bucket = bucket_object_scene.instantiate()
+				bucket.global_position = action_indicator.global_position
+				inventory.remove_item(bucket_item.item, 1)
+				bucket.add_water(100)
+				bucket_container.add_child(bucket)
 
 func _act_hold():
 	match _current_action:
@@ -201,7 +211,6 @@ func _try_drop_carrying_item():
 		_current_action_target = null
 		_current_action = Action.NONE
 		raycast.clear_exceptions()
-
 
 func _update_money(value) -> void:
 	money_amount_cents = value

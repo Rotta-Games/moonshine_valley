@@ -4,15 +4,23 @@ extends BoxContainer
 @onready var item_container = $ItemContainer
 
 var _selected_index = -1
+var _enabled: bool = false
 
 signal item_used(id: Item.Id)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player.inventory.item_changed.connect(_on_item_changed)
+	
+func enable(value: bool):
+	_enabled = value
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	if not _enabled:
+		return
+		
 	if len(item_container.get_children()) == 0:
 		return
 		
@@ -55,7 +63,8 @@ func set_inventory(itemStacks):
 		itemEntity.get_node("TextureRect").set_texture(itemStack.item.ui_icon)
 		itemEntity.get_node("QuantityText").set_text(str(itemStack.quantity))
 		itemEntity.item = itemStack.item
-		item_container.add_child(itemEntity)
+		if itemStack.quantity > 0:
+			item_container.add_child(itemEntity)
 		
 
 

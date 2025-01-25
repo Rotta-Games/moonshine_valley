@@ -7,14 +7,15 @@ extends Control
 
 var _rng : RandomNumberGenerator = RandomNumberGenerator.new()
 var _bucket : Bucket = null
-var _next_plup_tick = 0
 
 signal closed
-signal next_item
-signal previous_item
 signal use_item
 
 func _process(delta: float):
+	
+	if not visible:
+		return
+	
 	if Input.is_action_just_pressed("player_cancel"):
 		_bucket = null
 		closed.emit()
