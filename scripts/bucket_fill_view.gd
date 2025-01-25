@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 @onready var _yeast_sprite: TextureRect = $"TextureRect/YeastTexture"
 @onready var _sugar_sprite: TextureRect = $"TextureRect/SugarTexture"
@@ -7,6 +7,25 @@ extends CanvasLayer
 
 var _animation_playing: bool = false
 var _rng : RandomNumberGenerator = RandomNumberGenerator.new()
+var _bucket : Bucket = null
+var _next_plup_tick = 0
+
+signal closed
+
+func _process(delta: float):
+	if Input.is_action_just_pressed("player_cancel"):
+		_bucket = null
+		closed.emit()
+		return
+		
+	if _bucket and _is_plup_time():
+		_play_plup_sound()
+		
+func _is_plup_time() -> bool:
+	return false
+	
+func _play_plup_sound():
+	pass
 		
 func _reset_ingredient(sprite: TextureRect):
 	sprite.position = _ingredient_start_location.position
@@ -32,3 +51,7 @@ func add_yeast() -> void:
 
 func add_sugar() -> void:
 	_add_ingredient(_sugar_sprite)
+
+func _on_player_bucket_inspected(bucket: Bucket) -> void:
+	_bucket = bucket
+	print(bucket.state)

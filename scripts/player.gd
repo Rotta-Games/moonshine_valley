@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-
 signal money_changed(amount: int)
+signal bucket_inspected(bucket: Bucket)
 
 @onready var action_indicator : Sprite2D = $"ActionIndicatorSprite"
 
@@ -164,8 +164,7 @@ func _act_tap():
 			if ok:
 				money_amount_cents -= bucket_price_cents
 		Action.ACT_BUCKET:
-			print("AUKASE ÄNPÄRI!")
-
+			bucket_inspected.emit(_current_action_target as Bucket)
 
 func _act_hold():
 	match _current_action:
@@ -173,7 +172,6 @@ func _act_hold():
 			if _carrying_item == null:
 				_to_be_carrying = true
 
-					
 func _act_release():
 	# If carrying an item, need to drop it first
 	if _carrying_item:

@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8wam82o4tpa"]
+[gd_scene load_steps=7 format=3 uid="uid://c8wam82o4tpa"]
 
 [ext_resource type="Script" path="res://scripts/bucket_fill_view.gd" id="1_nrqgx"]
 [ext_resource type="Texture2D" uid="uid://chm1rjm6jqcv5" path="res://assets/gfx/big_bucket.png" id="2_701xj"]
 [ext_resource type="Texture2D" uid="uid://pwk40xte5av0" path="res://assets/gfx/objects.png" id="3_j7pf6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx0c6"]
+atlas = ExtResource("2_701xj")
+region = Rect2(0, 0, 161.148, 159.646)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xfquj"]
 atlas = ExtResource("3_j7pf6")
@@ -12,13 +16,16 @@ region = Rect2(16.972, 0.857402, 13.0691, 14.1821)
 atlas = ExtResource("3_j7pf6")
 region = Rect2(33.1362, 0.717249, 13.6766, 15.6903)
 
-[node name="BucketFillView" type="CanvasLayer"]
+[node name="BucketFillView" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_nrqgx")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("2_701xj")
+texture = SubResource("AtlasTexture_cx0c6")
 
 [node name="YeastTexture" type="TextureRect" parent="TextureRect"]
 visible = false

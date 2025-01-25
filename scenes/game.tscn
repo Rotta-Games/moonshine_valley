@@ -1,14 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6m0eoberdjia"]
+[gd_scene load_steps=14 format=3 uid="uid://b6m0eoberdjia"]
 
 [ext_resource type="PackedScene" uid="uid://bxvyqs010obxu" path="res://scenes/world.tscn" id="1_gphd6"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_qbbn2"]
 [ext_resource type="PackedScene" uid="uid://ctmnc28k3xuye" path="res://scenes/home/home.tscn" id="2_h8pvb"]
 [ext_resource type="PackedScene" uid="uid://12xj50xlse6g" path="res://scenes/shop/s_market_shop.tscn" id="3_7lrkb"]
 [ext_resource type="PackedScene" uid="uid://1wmh7fl8b55w" path="res://scenes/player.tscn" id="4_kw61d"]
 [ext_resource type="Script" path="res://scenes/player_camera.gd" id="5_dcmbd"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="5_k53qs"]
-[ext_resource type="PackedScene" uid="uid://1w5lucexjrxa" path="res://scenes/teleport.tscn" id="6_jmxoo"]
+[ext_resource type="PackedScene" uid="uid://dfasmvevnkqlv" path="res://scenes/teleport.tscn" id="6_jmxoo"]
 [ext_resource type="Script" path="res://scripts/money_label.gd" id="8_gsygp"]
 [ext_resource type="PackedScene" uid="uid://c1m22va7uwgtf" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
+[ext_resource type="PackedScene" uid="uid://c8wam82o4tpa" path="res://scenes/views/bucket_fill_view.tscn" id="10_v3rci"]
 
 [sub_resource type="Resource" id="Resource_2rr4b"]
 script = ExtResource("5_k53qs")
@@ -18,6 +20,8 @@ max_size = 10
 font_size = 14
 
 [node name="Game" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_qbbn2")
 
 [node name="World" parent="." instance=ExtResource("1_gphd6")]
 
@@ -93,7 +97,16 @@ layout_mode = 2
 text = "1M"
 script = ExtResource("8_gsygp")
 
-[connection signal="money_changed" from="Player" to="CanvasLayer/UI/HBoxContainer/MoneyAmount" method="_update_text"]
+[node name="WindowCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BucketFillView" parent="WindowCanvasLayer" instance=ExtResource("10_v3rci")]
+process_mode = 2
+visible = false
+offset_left = 280.0
+offset_top = 59.0
+offset_right = 280.0
+offset_bottom = 59.0
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="InventoryMenu" parent="HUD" instance=ExtResource("8_i3gep")]
@@ -103,3 +116,8 @@ offset_top = 251.0
 offset_right = 104.0
 offset_bottom = 251.0
 scale = Vector2(1, 1)
+
+[connection signal="bucket_inspected" from="Player" to="." method="_on_player_bucket_inspected"]
+[connection signal="bucket_inspected" from="Player" to="WindowCanvasLayer/BucketFillView" method="_on_player_bucket_inspected"]
+[connection signal="money_changed" from="Player" to="CanvasLayer/UI/HBoxContainer/MoneyAmount" method="_update_text"]
+[connection signal="closed" from="WindowCanvasLayer/BucketFillView" to="." method="_on_bucket_fill_view_closed"]

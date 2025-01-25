@@ -1,4 +1,5 @@
 extends Node2D
+class_name Bucket
 
 var _yeast_count: int = 0
 var _sugar_count: int = 0
@@ -10,7 +11,7 @@ const READY_TIME = 60*1000
 const SPOILED_TIME = 300*1000
 
 enum State {MISSING_INGREDIENTS, FERMENTING, READY, SPOILED}
-var _state : State = State.MISSING_INGREDIENTS
+var state : State = State.MISSING_INGREDIENTS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,12 +19,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if _state == State.SPOILED:
+	if state == State.SPOILED:
 		return
 	
-	if _fermentation_ongoing() and _state == State.MISSING_INGREDIENTS:
+	if _fermentation_ongoing() and state == State.MISSING_INGREDIENTS:
 		_fermentation_start_time = Time.get_ticks_msec()
-		_state = State.FERMENTING
+		state = State.FERMENTING
 	
 	var fermentation_time = Time.get_ticks_msec() - _fermentation_start_time
 	if fermentation_time > SPOILED_TIME:
@@ -31,15 +32,14 @@ func _process(delta: float) -> void:
 	elif fermentation_time > READY_TIME:
 		_set_ready()
 	
-	
 func _fermentation_ongoing() -> bool:
 	return _yeast_count > 0 and _sugar_count > 0 and _water_count > 0
 	
 func _set_ready():
-	_state = State.READY
+	state = State.READY
 
 func _set_spoiled():
-	_state = State.SPOILED
+	state = State.SPOILED
 
 func add_yeast(count: int):
 	_yeast_count += count
