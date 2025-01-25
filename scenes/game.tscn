@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6m0eoberdjia"]
+[gd_scene load_steps=18 format=3 uid="uid://b6m0eoberdjia"]
 
 [ext_resource type="PackedScene" uid="uid://bxvyqs010obxu" path="res://scenes/world.tscn" id="1_gphd6"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_qbbn2"]
@@ -7,16 +7,20 @@
 [ext_resource type="PackedScene" uid="uid://1wmh7fl8b55w" path="res://scenes/player.tscn" id="4_kw61d"]
 [ext_resource type="Script" path="res://scenes/player_camera.gd" id="5_dcmbd"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="5_k53qs"]
-[ext_resource type="PackedScene" path="res://scenes/teleport.tscn" id="6_jmxoo"]
+[ext_resource type="PackedScene" uid="uid://dfasmvevnkqlv" path="res://scenes/teleport.tscn" id="6_jmxoo"]
 [ext_resource type="Script" path="res://scripts/money_label.gd" id="8_gsygp"]
-[ext_resource type="PackedScene" uid="uid://c1m22va7uwgtf" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
+[ext_resource type="PackedScene" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
 [ext_resource type="PackedScene" uid="uid://c8wam82o4tpa" path="res://scenes/views/bucket_fill_view.tscn" id="10_v3rci"]
 [ext_resource type="PackedScene" uid="uid://6y4yg73so1d5" path="res://scenes/gui/menu.tscn" id="11_iy8x7"]
 [ext_resource type="PackedScene" uid="uid://cwea1jg54vlwh" path="res://scenes/shop/dokmanni.tscn" id="12_hbpd2"]
+[ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shop/shopkeeper.tscn" id="13_l4n53"]
 
 [sub_resource type="Resource" id="Resource_2rr4b"]
 script = ExtResource("5_k53qs")
 max_size = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1kce"]
+size = Vector2(80, 64)
 
 [sub_resource type="LabelSettings" id="LabelSettings_w3iyl"]
 font_size = 14
@@ -87,6 +91,18 @@ target = NodePath("../../DokmanniShop/SpawnPoint")
 position = Vector2(269, 1048)
 target = NodePath("../../World/DokmanniSpawnPoint")
 
+[node name="SellingArea" type="Node2D" parent="."]
+position = Vector2(-176, 112)
+
+[node name="Shopkeeper" parent="SellingArea" instance=ExtResource("13_l4n53")]
+position = Vector2(20, 18)
+
+[node name="Area2D" type="Area2D" parent="SellingArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SellingArea/Area2D"]
+position = Vector2(40, 32)
+shape = SubResource("RectangleShape2D_h1kce")
+
 [node name="WindowCanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 2
 
@@ -139,5 +155,6 @@ script = ExtResource("8_gsygp")
 [connection signal="bucket_inspected" from="Player" to="." method="_on_player_bucket_inspected"]
 [connection signal="bucket_inspected" from="Player" to="WindowCanvasLayer/BucketFillView" method="_on_player_bucket_inspected"]
 [connection signal="money_changed" from="Player" to="HUD/UI/HBoxContainer/MoneyAmount" method="_update_text"]
+[connection signal="body_entered" from="SellingArea/Area2D" to="." method="_on_bucket_entered_selling_area"]
 [connection signal="closed" from="WindowCanvasLayer/BucketFillView" to="." method="_on_bucket_fill_view_closed"]
 [connection signal="item_used" from="WindowCanvasLayer/InventoryMenu" to="WindowCanvasLayer/BucketFillView" method="_on_inventory_menu_item_used"]
