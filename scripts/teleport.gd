@@ -1,18 +1,17 @@
 extends Node2D
 
-@onready var player = $Player
-@onready var player_cam = $PlayerCamera
-@onready var shop_spawn_point = $ShopSpawnPoint
+@export var target: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 
-func on_shop_door_entered(body:Node2D) -> void:
+func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		print("vaihda positio")
+		body.global_position = target.global_position

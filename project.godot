@@ -17,7 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://scripts/global.gd"
 Inventory="*res://scripts/inventory.gd"
 
 [display]
@@ -77,6 +76,7 @@ player_action={
 2d_physics/layer_2="Wall"
 2d_physics/layer_3="ActionTarget"
 2d_physics/layer_4="ActionSelector"
+2d_physics/layer_5="Teleport"
 
 [physics]
 
