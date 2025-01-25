@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq2d0vlsir6qy"]
+
+[ext_resource type="Script" path="res://scripts/bucket_observe_view.gd" id="1_cp3j6"]
+[ext_resource type="Texture2D" uid="uid://chm1rjm6jqcv5" path="res://assets/gfx/big_bucket.png" id="1_vc7se"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttk0m"]
+atlas = ExtResource("1_vc7se")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grd5q"]
+atlas = SubResource("AtlasTexture_ttk0m")
+
+[node name="BucketObserveView" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_cp3j6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 160.0
+texture = SubResource("AtlasTexture_grd5q")

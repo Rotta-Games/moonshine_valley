@@ -20,7 +20,6 @@ func _on_pause_button_pressed():
 func _on_resume_button_pressed():
 	_hide()
 
-
 func _on_help_button_pressed():
 	pass # Replace with function body.
 
