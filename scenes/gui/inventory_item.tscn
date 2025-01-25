@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj3q184wmpb0t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7wvjm"]
+font_size = 8
+
+[node name="InventoryItem" type="PanelContainer"]
+offset_right = 28.0
+offset_bottom = 32.0
+scale = Vector2(0.998622, 1.00156)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+
+[node name="QuantityText" type="Label" parent="."]
+layout_mode = 2
+text = "3"
+label_settings = SubResource("LabelSettings_7wvjm")

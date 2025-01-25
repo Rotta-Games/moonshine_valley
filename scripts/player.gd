@@ -135,31 +135,6 @@ func _on_action_indicator_area_2d_area_shape_exited(area_rid: RID, area: Area2D,
 	_current_action_target = null
 	_to_be_carrying = false
 
-
-func _new_yeast():
-	var item = Item.new()
-	item.name = "Hiiva"
-	item.description = "Hiivaa"
-	item.item_scene = yeast_scene
-	return item
-
-
-func _new_bucket():
-	var item = Item.new()
-	item.name = "Änpäri"
-	item.description = "Tyhjä"
-	item.item_scene = bucket_scene
-	return item
-
-
-func _new_sugar():
-	var item = Item.new()
-	item.name = "Hiiva"
-	item.description = "Hiivaa"
-	item.item_scene = yeast_scene
-	return item
-
-
 func _act_tap():
 	match _current_action:
 		Action.NONE:
@@ -167,24 +142,28 @@ func _act_tap():
 		Action.BUY_YEAST:
 			if money_amount_cents < yeast_price_cents:
 				return
-			var yeast = self._new_yeast()
-			var ok = inventory.add_item(yeast, 1)
-			if ok:
-				money_amount_cents -= yeast_price_cents
+			#var yeast = self._new_yeast()
+			#var ok = inventory.add_item(yeast, 1)
+			var yea = yeast_scene.instantiate()
+			inventory.add_item(yea.item, 1)	
+			
+			#if ok:
+			#	money_amount_cents -= yeast_price_cents
+			
 		Action.BUY_SUGAR:
 			if money_amount_cents < sugar_price_cents:
 				return
-			var sugar = self._new_sugar()
-			var ok = inventory.add_item(sugar, 1)
-			if ok:
-				money_amount_cents -= sugar_price_cents
+			#var sugar = self._new_sugar()
+			#var ok = inventory.add_item(sugar, 1)
+			#if ok:
+			#	money_amount_cents -= sugar_price_cents
 		Action.BUY_BUCKET:
 			if money_amount_cents < bucket_price_cents:
 				return
-			var bucket = self._new_bucket()
-			var ok = inventory.add_item(bucket, 1)
-			if ok:
-				money_amount_cents -= bucket_price_cents
+			#var bucket = self._new_bucket()
+			#var ok = inventory.add_item(bucket, 1)
+			#if ok:
+			#	money_amount_cents -= bucket_price_cents
 		Action.ACT_BUCKET:
 			print("AUKASE ÄNPÄRI!")
 
