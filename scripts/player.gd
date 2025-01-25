@@ -16,6 +16,8 @@ var _current_action_target: Node2D = null
 var _carrying_item: Node2D = null
 var _ray_length : int = 0
 
+@export var inventory: Inventory
+
 func _ready():
 	_ray_length = raycast.target_position.x
 
@@ -94,7 +96,7 @@ func _act():
 			yeast.name = "Hiiva"
 			yeast.description = "Hiivaa"
 			yeast.item_scene = yeast_scene
-			Inventory.add_item(yeast, 1)	
+			inventory.add_item(yeast, 1)	
 		Action.BUY_SUGAR:
 			printerr("DEWA: OSTA SITÄ SOKERIA :DDD")		
 		Action.PICKUP:

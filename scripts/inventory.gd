@@ -1,4 +1,5 @@
-extends Node
+extends Resource
+class_name Inventory
 
 @export var max_size := 10
 var inventory: Array[ItemStack] = []
@@ -74,6 +75,7 @@ func add_item(item: Item, quantity:=1)->bool:
 		
 		
 		item_changed.emit(item)
+		print(inventory)
 		return true
 	else:
 		# There was not enough room
