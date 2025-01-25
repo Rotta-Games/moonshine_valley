@@ -145,4 +145,7 @@ position = Vector2(748, 116)
 position = Vector2(4, 1.5)
 shape = SubResource("RectangleShape2D_lc0ne")
 
+[node name="ShopSpawnPoint" type="Node2D" parent="."]
+position = Vector2(753, 140)
+
 [connection signal="body_entered" from="Area2D" to="." method="on_shop_door_entered"]
