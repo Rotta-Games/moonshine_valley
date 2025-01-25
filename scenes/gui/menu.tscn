@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://6y4yg73so1d5"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_psjv7"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_psjv7")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 153.0
+offset_top = 88.0
+offset_right = 320.0
+offset_bottom = 210.0
+
+[node name="BoxContainer" type="BoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -12.0
+offset_right = 204.0
+offset_bottom = 102.0
+alignment = 1
+vertical = true
+
+[node name="ResumeButton" type="Button" parent="Control/BoxContainer"]
+layout_mode = 2
+text = "RESUME"
+
+[node name="OptionsButton" type="Button" parent="Control/BoxContainer"]
+layout_mode = 2
+text = "OPTIONS"
+
+[node name="QuitButton" type="Button" parent="Control/BoxContainer"]
+layout_mode = 2
+text = "QUIT"
