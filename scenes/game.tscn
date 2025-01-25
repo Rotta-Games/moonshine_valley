@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6m0eoberdjia"]
+[gd_scene load_steps=15 format=3 uid="uid://b6m0eoberdjia"]
 
 [ext_resource type="PackedScene" uid="uid://bxvyqs010obxu" path="res://scenes/world.tscn" id="1_gphd6"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_qbbn2"]
@@ -9,8 +9,9 @@
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="5_k53qs"]
 [ext_resource type="PackedScene" uid="uid://dfasmvevnkqlv" path="res://scenes/teleport.tscn" id="6_jmxoo"]
 [ext_resource type="Script" path="res://scripts/money_label.gd" id="8_gsygp"]
-[ext_resource type="PackedScene" uid="uid://c1m22va7uwgtf" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
+[ext_resource type="PackedScene" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
 [ext_resource type="PackedScene" uid="uid://c8wam82o4tpa" path="res://scenes/views/bucket_fill_view.tscn" id="10_v3rci"]
+[ext_resource type="PackedScene" uid="uid://cwea1jg54vlwh" path="res://scenes/shop/dokmanni.tscn" id="12_hbpd2"]
 
 [sub_resource type="Resource" id="Resource_2rr4b"]
 script = ExtResource("5_k53qs")
@@ -31,6 +32,9 @@ position = Vector2(745, 136)
 [node name="HomeSpawnPoint" type="Node2D" parent="World"]
 position = Vector2(168, 141)
 
+[node name="DokmanniSpawnPoint" type="Node2D" parent="World"]
+position = Vector2(598, -65)
+
 [node name="Home" parent="." instance=ExtResource("2_h8pvb")]
 position = Vector2(576, 353)
 
@@ -42,6 +46,12 @@ position = Vector2(0, 352)
 
 [node name="SpawnPoint" type="Node2D" parent="SMarketShop"]
 position = Vector2(223, 232)
+
+[node name="DokmanniShop" parent="." instance=ExtResource("12_hbpd2")]
+position = Vector2(45, 776)
+
+[node name="SpawnPoint" type="Node2D" parent="DokmanniShop"]
+position = Vector2(223, 238)
 
 [node name="Player" parent="." instance=ExtResource("4_kw61d")]
 position = Vector2(132, 136)
@@ -67,6 +77,14 @@ target = NodePath("../../Home/SpawnPoint")
 [node name="FromHome" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
 position = Vector2(679, 625)
 target = NodePath("../../World/HomeSpawnPoint")
+
+[node name="ToDokmanni" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
+position = Vector2(600, -92)
+target = NodePath("../../DokmanniShop/SpawnPoint")
+
+[node name="FromDokmanni" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
+position = Vector2(269, 1048)
+target = NodePath("../../World/DokmanniSpawnPoint")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
