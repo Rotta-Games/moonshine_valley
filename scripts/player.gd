@@ -12,7 +12,8 @@ extends CharacterBody2D
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
-const DRAG_FRAMES_THRESHOLD = 6
+
+const ACTION_HOLD_TIME_THRESHOLD = 0.1
 
 enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, ACT_BUCKET}
 
@@ -21,7 +22,8 @@ var _current_action_target: Node2D = null
 var _carrying_item: Node2D = null
 var _ray_length : int = 0
 
-var _action_button_frame_count: int = false
+var _action_button_timer: float = false
+var _action_button_hold: bool = false
 
 var money_amount_cents: int = 5_00: set = _update_money_label
 
@@ -34,6 +36,29 @@ var bucket_price_cents: int = 10_00
 func _ready():
 	_ray_length = int(raycast.target_position.x)
 	money_label.text = str(money_amount_cents/100.0) + "€"
+
+
+func _input(event):
+	if event.is_action_pressed("quit"):
+		get_tree().quit()
+
+	if event.is_action_pressed("player_action"):
+		_action_button_timer = 0
+	if event.is_action_released("player_action"):
+		if _action_button_hold:
+			_action_button_hold = false
+			_act_release()
+		else:
+			_act_tap()
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("player_action"):
+		_action_button_timer += delta
+		if not _action_button_hold and _action_button_timer >= ACTION_HOLD_TIME_THRESHOLD:
+			_action_button_hold = true
+			_act_hold()
+
 
 
 func _physics_process(delta: float) -> void:
@@ -52,13 +77,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y = v_direction * move_speed
 	else:
 		velocity.y = move_toward(velocity.x, 0, move_speed)
-		
-	if Input.is_action_pressed("player_action"):
-		_act_press()
-		_action_button_frame_count += 1
-	if Input.is_action_just_released("player_action"):
-		_act_release()
-		_action_button_frame_count = 0
 		
 	var cur_pos = position
 
@@ -130,7 +148,7 @@ func _new_sugar():
 	return item
 
 
-func _act_press():
+func _act_tap():
 	match _current_action:
 		Action.NONE:
 			return
@@ -156,7 +174,13 @@ func _act_press():
 			if ok:
 				money_amount_cents -= bucket_price_cents
 		Action.ACT_BUCKET:
-			if _carrying_item == null and _action_button_frame_count >= DRAG_FRAMES_THRESHOLD:
+			print("AUKASE ÄNPÄRI!")
+
+
+func _act_hold():
+	match _current_action:
+		Action.ACT_BUCKET:
+			if _carrying_item == null:
 				_carrying_item = _current_action_target
 				var collision_object = _get_collision_object(_carrying_item)
 				if collision_object:
@@ -168,12 +192,10 @@ func _act_release():
 	if _carrying_item:
 		_try_drop_carrying_item()
 		return
-	match _current_action:
-		Action.ACT_BUCKET:
-			print(_action_button_frame_count)
-			if _action_button_frame_count < DRAG_FRAMES_THRESHOLD:
-				print("JONI: aukase se zoomi ikkuna :D")
-
+	else:
+		# allow tap for a longer time if not carrying an item
+		if _action_button_timer < ACTION_HOLD_TIME_THRESHOLD * 3:
+			_act_tap()
 
 
 func _get_collision_object(parent : Node2D):
