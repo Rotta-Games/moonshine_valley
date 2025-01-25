@@ -14,13 +14,15 @@ signal money_changed(amount: int)
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 
-const ACTION_HOLD_TIME_THRESHOLD = 0.1
+const ACTION_HOLD_TIME_THRESHOLD = 0.05
 const ACTION_TAP_TIME_THRESHOLD = 0.8
 
 enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, ACT_BUCKET}
 
 var _current_action: Action = Action.NONE
 var _current_action_target: Node2D = null
+
+var _to_be_carrying: bool = false
 var _carrying_item: Node2D = null
 var _ray_length : int = 0
 
@@ -61,9 +63,15 @@ func _process(delta: float) -> void:
 			_action_button_hold = true
 			_act_hold()
 
+	if self.velocity.length() > 0 and _carrying_item == null and _to_be_carrying:
+		_carrying_item = _current_action_target
+		_to_be_carrying = false
+		var collision_object = _get_collision_object(_carrying_item)
+		if collision_object:
+			raycast.add_exception(collision_object)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var move_speed = SPEED
 	if Input.is_action_pressed("debug_run"):
 		move_speed *= 2
@@ -124,6 +132,8 @@ func _on_action_indicator_area_2d_area_shape_entered(area_rid: RID, area: Area2D
 		
 func _on_action_indicator_area_2d_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	_current_action = Action.NONE
+	_current_action_target = null
+	_to_be_carrying = false
 
 
 func _new_yeast():
@@ -183,10 +193,7 @@ func _act_hold():
 	match _current_action:
 		Action.ACT_BUCKET:
 			if _carrying_item == null:
-				_carrying_item = _current_action_target
-				var collision_object = _get_collision_object(_carrying_item)
-				if collision_object:
-					raycast.add_exception(collision_object)
+				_to_be_carrying = true
 
 					
 func _act_release():
