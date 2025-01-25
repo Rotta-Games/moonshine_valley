@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://d173pu0c146ob"]
+
+[ext_resource type="Script" path="res://scripts/inventory.gd" id="1_luslx"]
+
+[node name="Inventory" type="Node2D"]
+rotation = 0.000459046
+script = ExtResource("1_luslx")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="BoxContainer"]
+layout_mode = 2
+text = "JOU OON INVENTORY"

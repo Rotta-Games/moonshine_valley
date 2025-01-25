@@ -1,5 +1,4 @@
-extends Resource
-class_name Inventory
+extends Node
 
 @export var max_size := 10
 var inventory: Array[ItemStack] = []

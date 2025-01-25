@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var inventory: Inventory
 @onready var action_indicator : Sprite2D = $"ActionIndicatorSprite"
+@onready var yeast_scene = preload("res://scenes/items/yeast.tscn")
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
@@ -61,6 +61,10 @@ func _act():
 		Action.NONE:
 			return
 		Action.BUY_YEAST:
-			printerr("DEWA: OSTA SITÄ VITUN HIIVAA :D")		
+			var yeast = Item.new()
+			yeast.name = "Hiiva"
+			yeast.description = "Hiivaa"
+			yeast.item_scene = yeast_scene
+			Inventory.add_item(yeast, 1)	
 		Action.BUY_SUGAR:
 			printerr("DEWA: OSTA SITÄ SOKERIA :DDD")		
