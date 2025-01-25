@@ -16,20 +16,27 @@ var _current_action_target: Node2D = null
 var _carrying_item: Node2D = null
 var _ray_length : int = 0
 
+@export var inventory: Inventory
+
 func _ready():
 	_ray_length = raycast.target_position.x
 
 func _physics_process(delta: float) -> void:
+	var move_speed = SPEED
+	if Input.is_action_pressed("debug_run"):
+		move_speed *= 2
+	if _carrying_item:
+		move_speed /= 2
 	var h_direction := Input.get_axis("move_left", "move_right")
 	if h_direction:
-		velocity.x = h_direction * SPEED
+		velocity.x = h_direction * move_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, move_speed)
 	var v_direction := Input.get_axis("move_up", "move_down")
 	if v_direction:
-		velocity.y = v_direction * SPEED
+		velocity.y = v_direction * move_speed
 	else:
-		velocity.y = move_toward(velocity.x, 0, SPEED)
+		velocity.y = move_toward(velocity.x, 0, move_speed)
 		
 	if Input.is_action_just_pressed("player_action"):
 		_act()
@@ -94,7 +101,7 @@ func _act():
 			yeast.name = "Hiiva"
 			yeast.description = "Hiivaa"
 			yeast.item_scene = yeast_scene
-			Inventory.add_item(yeast, 1)	
+			inventory.add_item(yeast, 1)	
 		Action.BUY_SUGAR:
 			printerr("DEWA: OSTA SITÄ SOKERIA :DDD")		
 		Action.PICKUP:

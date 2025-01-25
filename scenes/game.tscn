@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cq2145msmkdbb"]
+[gd_scene load_steps=9 format=3 uid="uid://b6m0eoberdjia"]
 
 [ext_resource type="PackedScene" uid="uid://bxvyqs010obxu" path="res://scenes/world.tscn" id="1_gphd6"]
 [ext_resource type="PackedScene" uid="uid://ctmnc28k3xuye" path="res://scenes/home/home.tscn" id="2_h8pvb"]
 [ext_resource type="PackedScene" uid="uid://12xj50xlse6g" path="res://scenes/shop/s_market_shop.tscn" id="3_7lrkb"]
 [ext_resource type="PackedScene" uid="uid://1wmh7fl8b55w" path="res://scenes/player.tscn" id="4_kw61d"]
 [ext_resource type="Script" path="res://scenes/player_camera.gd" id="5_dcmbd"]
+[ext_resource type="Script" path="res://scripts/inventory.gd" id="5_k53qs"]
 [ext_resource type="PackedScene" uid="uid://dfasmvevnkqlv" path="res://scenes/teleport.tscn" id="6_jmxoo"]
+
+[sub_resource type="Resource" id="Resource_2rr4b"]
+script = ExtResource("5_k53qs")
+max_size = 10
 
 [node name="Game" type="Node2D"]
 
@@ -25,6 +30,7 @@ position = Vector2(223, 232)
 
 [node name="Player" parent="." instance=ExtResource("4_kw61d")]
 position = Vector2(132, 136)
+inventory = SubResource("Resource_2rr4b")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 script = ExtResource("5_dcmbd")

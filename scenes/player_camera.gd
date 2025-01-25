@@ -2,6 +2,7 @@ extends Camera2D
 
 @onready var target = get_node("../Player")
 
+const SNAP_DISTANCE = 500
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,4 +13,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# godot 4.3
 	# move camera with player
-	self.position = lerp(self.position, target.position, delta * 10)
+	if self.position.distance_to(target.position) > SNAP_DISTANCE:
+		self.position = target.position
+	else:
+		self.position = lerp(self.position, target.position, delta * 10)
+	self.position.x = floor(self.position.x)
+	self.position.y = floor(self.position.y)
