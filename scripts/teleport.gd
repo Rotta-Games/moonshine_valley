@@ -14,4 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		body.global_position = target.global_position
+		var pos_diff = target.global_position - body.global_position
+		body.global_position += pos_diff
+		if body._carrying_item:
+			body._carrying_item.global_position += pos_diff
