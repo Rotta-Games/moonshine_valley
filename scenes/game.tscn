@@ -22,8 +22,14 @@ font_size = 14
 [node name="ShopSpawnPoint" type="Node2D" parent="World"]
 position = Vector2(745, 136)
 
+[node name="HomeSpawnPoint" type="Node2D" parent="World"]
+position = Vector2(168, 141)
+
 [node name="Home" parent="." instance=ExtResource("2_h8pvb")]
 position = Vector2(576, 353)
+
+[node name="SpawnPoint" type="Node2D" parent="Home"]
+position = Vector2(102, 233)
 
 [node name="SMarketShop" parent="." instance=ExtResource("3_7lrkb")]
 position = Vector2(0, 352)
@@ -47,6 +53,14 @@ target = NodePath("../../SMarketShop/SpawnPoint")
 [node name="FromShopTeleport" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
 position = Vector2(224, 624)
 target = NodePath("../../World/ShopSpawnPoint")
+
+[node name="ToHome" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
+position = Vector2(169, 113)
+target = NodePath("../../Home/SpawnPoint")
+
+[node name="FromHome" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
+position = Vector2(679, 625)
+target = NodePath("../../World/HomeSpawnPoint")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
