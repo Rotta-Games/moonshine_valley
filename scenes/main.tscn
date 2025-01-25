@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnddr8hfm1ty2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_pwgrl"]
-[ext_resource type="AudioStream" uid="uid://dgxoswq53oot6" path="res://assets/sfx/kiljuvainiolla_remix_130bps_192k.mp3" id="2_h5w2e"]
+[ext_resource type="AudioStream" uid="uid://ctv0yfnrexp8b" path="res://assets/sfx/kiljuvainiolla_remix_130bps_192k.mp3" id="2_h5w2e"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
