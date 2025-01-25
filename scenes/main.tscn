@@ -1,3 +1,43 @@
-[gd_scene format=3 uid="uid://bnddr8hfm1ty2"]
+[gd_scene load_steps=2 format=3 uid="uid://bnddr8hfm1ty2"]
 
-[node name="Main" type="Node2D"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_pwgrl"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+script = ExtResource("1_pwgrl")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 35.0
+offset_right = 363.0
+offset_bottom = 51.0
+rotation = 0.0174533
+text = "Kiljuvainio"
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 6.0
+offset_right = 353.0
+offset_bottom = 268.0
+rotation = -0.0174533
+alignment = 1
+vertical = true
+
+[node name="Start" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Start Game :D"
+
+[node name="Instructions" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Instructions"
+
+[node name="Quit" type="Button" parent="BoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="BoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="BoxContainer/Quit" to="." method="_on_quit_pressed"]
