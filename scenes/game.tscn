@@ -96,12 +96,12 @@ target = NodePath("../../World/DokmanniSpawnPoint")
 position = Vector2(-176, 112)
 
 [node name="Shopkeeper" parent="SellingArea" instance=ExtResource("13_l4n53")]
-position = Vector2(20, 18)
+position = Vector2(0, 18)
 
 [node name="Area2D" type="Area2D" parent="SellingArea"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SellingArea/Area2D"]
-position = Vector2(40, 32)
+position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_h1kce")
 
 [node name="WindowCanvasLayer" type="CanvasLayer" parent="."]

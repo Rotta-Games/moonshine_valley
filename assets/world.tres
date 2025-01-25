@@ -84,6 +84,7 @@ texture = ExtResource("1_v16ue")
 6:1/0 = 0
 6:0/0 = 0
 6:9/0 = 0
+6:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 7:6/0 = 0
 7:5/0 = 0
 7:4/0 = 0
@@ -187,6 +188,15 @@ texture = ExtResource("1_v16ue")
 6:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 10:15/0 = 0
 0:14/0 = 0
+13:2/0 = 0
+12:2/0 = 0
+12:1/0 = 0
+11:1/0 = 0
+11:0/0 = 0
+13:1/0 = 0
+13:0/0 = 0
+12:0/0 = 0
+11:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h066q"]
 texture = ExtResource("2_fddck")
