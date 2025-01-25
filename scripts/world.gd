@@ -1,7 +1,5 @@
 extends Node2D
 
-@onready var player = $Player
-@onready var player_cam = $PlayerCamera
 @onready var shop_spawn_point = $ShopSpawnPoint
 
 # Called when the node enters the scene tree for the first time.
