@@ -12,6 +12,8 @@ signal pause_button_pressed()
 
 @onready var raycast : RayCast2D = $"RayCast2D"
 
+@onready var help_text = $"../HUD/HelpText"
+
 const SPEED = 150.0
 const JUMP_VELOCITY = -400.0
 
@@ -37,6 +39,11 @@ var money_amount_cents: int: set = _update_money
 var yeast_price_cents: int = 25
 var sugar_price_cents: int = 1_50
 var bucket_price_cents: int = 10_00
+
+@onready var yeast_item = yeast_scene.instantiate()
+@onready var bucket_item = bucket_scene.instantiate()
+@onready var sugar_item = sugar_scene.instantiate()
+
 
 @export var inventory: Inventory
 
@@ -126,10 +133,13 @@ func _on_action_indicator_area_2d_area_shape_entered(area_rid: RID, area: Area2D
 	_current_action_target = area.get_parent()
 	var group = area.get_parent().get_groups()[0]
 	if group == "yeast_buy_zone":
+		help_text.play_text(yeast_item.item.description)
 		_current_action = Action.BUY_YEAST
 	if group == "sugar_buy_zone":
+		help_text.play_text(sugar_item.item.description)
 		_current_action = Action.BUY_SUGAR
 	if group == "bucket_buy_zone":
+		help_text.play_text(bucket_item.item.description)
 		_current_action = Action.BUY_BUCKET
 	if group == "bucket":
 		_current_action = Action.ACT_BUCKET
@@ -147,7 +157,6 @@ func _act_tap():
 			if money_amount_cents < yeast_price_cents:
 				return
 
-			var yeast_item = yeast_scene.instantiate()
 			var ok = inventory.add_item(yeast_item.item, 1)	
 			
 			if ok:
@@ -156,14 +165,12 @@ func _act_tap():
 		Action.BUY_SUGAR:
 			if money_amount_cents < sugar_price_cents:
 				return
-			var sugar_item = sugar_scene.instantiate()
 			var ok = inventory.add_item(sugar_item.item, 1)	
 			if ok:
 				money_amount_cents -= sugar_price_cents
 		Action.BUY_BUCKET:
 			if money_amount_cents < bucket_price_cents:
 				return
-			var bucket_item = bucket_scene.instantiate()
 			var ok = inventory.add_item(bucket_item.item, 1)	
 			if ok:
 				money_amount_cents -= bucket_price_cents
@@ -199,3 +206,15 @@ func _try_drop_carrying_item():
 func _update_money(value) -> void:
 	money_amount_cents = value
 	money_changed.emit(money_amount_cents)
+
+
+func _on_bucket_sold(bucket_state: Bucket.State) -> void:
+	match bucket_state:
+		Bucket.State.READY:
+			money_amount_cents += 50_00
+		Bucket.State.SPOILED:
+			money_amount_cents += 1_00
+		Bucket.State.FERMENTING:
+			money_amount_cents += 5_00
+		Bucket.State.MISSING_INGREDIENTS:
+			money_amount_cents += 0_50

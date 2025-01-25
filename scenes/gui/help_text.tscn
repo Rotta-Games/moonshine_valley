@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdhkhaas52uc4"]
+
+[ext_resource type="Script" path="res://scripts/help_text.gd" id="1_vaa3p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ed104"]
+font_size = 8
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 3
+
+[node name="HelpText" type="MarginContainer"]
+custom_minimum_size = Vector2(220, 50)
+offset_left = -1.0
+offset_top = -30.0
+offset_right = 219.0
+offset_bottom = 70.0
+script = ExtResource("1_vaa3p")
+
+[node name="TextLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_ed104")
+autowrap_mode = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

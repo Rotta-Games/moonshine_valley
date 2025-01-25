@@ -11,7 +11,7 @@ region = Rect2(0.237608, 0.187588, 16.08, 16.1211)
 [sub_resource type="Resource" id="Resource_sp2a0"]
 script = ExtResource("2_tm7lg")
 name = "Ämpäri"
-description = "Tämä on ämpäri"
+description = "Ämpäri on kiljukeisarin tärkein työväline"
 ui_icon = SubResource("AtlasTexture_8wvoi")
 stackable = false
 stack_size = 0
