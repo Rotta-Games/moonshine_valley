@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8wam82o4tpa"]
+
+[ext_resource type="Script" path="res://scripts/bucket_fill_view.gd" id="1_nrqgx"]
+[ext_resource type="Texture2D" uid="uid://chm1rjm6jqcv5" path="res://assets/gfx/big_bucket.png" id="2_701xj"]
+[ext_resource type="Texture2D" uid="uid://pwk40xte5av0" path="res://assets/gfx/objects.png" id="3_j7pf6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfquj"]
+atlas = ExtResource("3_j7pf6")
+region = Rect2(16.972, 0.857402, 13.0691, 14.1821)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8f7u"]
+atlas = ExtResource("3_j7pf6")
+region = Rect2(33.1362, 0.717249, 13.6766, 15.6903)
+
+[node name="BucketFillView" type="CanvasLayer"]
+script = ExtResource("1_nrqgx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_701xj")
+
+[node name="YeastTexture" type="TextureRect" parent="TextureRect"]
+visible = false
+layout_mode = 0
+offset_left = -356.0
+offset_top = 143.0
+offset_right = -316.0
+offset_bottom = 183.0
+scale = Vector2(0.6, 0.6)
+texture = SubResource("AtlasTexture_xfquj")
+
+[node name="SugarTexture" type="TextureRect" parent="TextureRect"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.6, 0.6)
+texture = SubResource("AtlasTexture_k8f7u")
+
+[node name="IngredientStartPosition" type="Node2D" parent="."]
+position = Vector2(108, 160)
+
+[node name="IngredientTargetPosition" type="Node2D" parent="."]
+position = Vector2(75, 67)
