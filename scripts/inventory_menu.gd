@@ -55,7 +55,8 @@ func set_inventory(itemStacks):
 		itemEntity.get_node("TextureRect").set_texture(itemStack.item.ui_icon)
 		itemEntity.get_node("QuantityText").set_text(str(itemStack.quantity))
 		itemEntity.item = itemStack.item
-		item_container.add_child(itemEntity)
+		if itemStack.quantity > 0:
+			item_container.add_child(itemEntity)
 		
 
 
