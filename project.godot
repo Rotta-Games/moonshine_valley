@@ -33,6 +33,7 @@ window/stretch/scale_mode="integer"
 
 yeast_buy_zone=""
 sugar_buy_zone=""
+bucket_pickup_zone=""
 
 [gui]
 
