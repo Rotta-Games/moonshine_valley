@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/money_label.gd" id="8_gsygp"]
 [ext_resource type="PackedScene" uid="uid://c1m22va7uwgtf" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
 [ext_resource type="PackedScene" uid="uid://c8wam82o4tpa" path="res://scenes/views/bucket_fill_view.tscn" id="10_v3rci"]
+[ext_resource type="PackedScene" uid="uid://6y4yg73so1d5" path="res://scenes/gui/menu.tscn" id="11_iy8x7"]
 [ext_resource type="PackedScene" uid="uid://cwea1jg54vlwh" path="res://scenes/shop/dokmanni.tscn" id="12_hbpd2"]
 
 [sub_resource type="Resource" id="Resource_2rr4b"]
@@ -132,6 +133,28 @@ label_settings = SubResource("LabelSettings_w3iyl")
 layout_mode = 2
 text = "1M"
 script = ExtResource("8_gsygp")
+
+[node name="WindowCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BucketFillView" parent="WindowCanvasLayer" instance=ExtResource("10_v3rci")]
+process_mode = 2
+visible = false
+offset_left = 280.0
+offset_top = 59.0
+offset_right = 280.0
+offset_bottom = 59.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Menu" parent="HUD" instance=ExtResource("11_iy8x7")]
+
+[node name="InventoryMenu" parent="HUD" instance=ExtResource("8_i3gep")]
+z_index = 9
+offset_left = 100.0
+offset_top = 251.0
+offset_right = 104.0
+offset_bottom = 251.0
+scale = Vector2(1, 1)
 
 [connection signal="bucket_inspected" from="Player" to="." method="_on_player_bucket_inspected"]
 [connection signal="bucket_inspected" from="Player" to="WindowCanvasLayer/BucketFillView" method="_on_player_bucket_inspected"]

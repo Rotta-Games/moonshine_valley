@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal money_changed(amount: int)
 signal bucket_inspected(bucket: Bucket)
+signal pause_button_pressed()
 
 @onready var action_indicator : Sprite2D = $"ActionIndicatorSprite"
 
@@ -46,7 +47,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("quit"):
-		get_tree().quit()
+		pause_button_pressed.emit()
 
 	if event.is_action_pressed("player_action"):
 		_action_button_timer = 0
