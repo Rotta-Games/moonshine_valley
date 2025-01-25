@@ -68,7 +68,7 @@ script = ExtResource("5_dcmbd")
 [node name="Teleports" type="Node2D" parent="."]
 
 [node name="ToShopTeleport" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
-position = Vector2(744, 116)
+position = Vector2(744, 123)
 target = NodePath("../../SMarketShop/SpawnPoint")
 
 [node name="FromShopTeleport" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
@@ -85,7 +85,7 @@ position = Vector2(679, 625)
 target = NodePath("../../World/HomeSpawnPoint")
 
 [node name="ToDokmanni" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
-position = Vector2(600, -92)
+position = Vector2(600, -85)
 target = NodePath("../../DokmanniShop/SpawnPoint")
 
 [node name="FromDokmanni" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
