@@ -95,6 +95,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	_update_action_indicator()
 	_update_carrying_item(cur_pos)
+	self.global_position = self.global_position.round()
 
 func _update_carrying_item(old_pos: Vector2) -> void:
 	var pos_delta = position - old_pos

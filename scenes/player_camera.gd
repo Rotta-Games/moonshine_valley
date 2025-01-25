@@ -17,3 +17,4 @@ func _process(delta: float) -> void:
 		self.position = target.position
 	else:
 		self.position = lerp(self.position, target.position, delta * 10)
+		self.global_position = self.global_position.round()
