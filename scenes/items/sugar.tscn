@@ -11,7 +11,7 @@ region = Rect2(31.5956, 0.15697, 16.2217, 16.845)
 [sub_resource type="Resource" id="Resource_dr30w"]
 script = ExtResource("2_iirhk")
 name = "Sokeri"
-description = "Tämä on sokeria"
+description = "Sokeri antaa herrrkullista ruokaa hiivalle"
 ui_icon = SubResource("AtlasTexture_8wvoi")
 stackable = true
 stack_size = 99

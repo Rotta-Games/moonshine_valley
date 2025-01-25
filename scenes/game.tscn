@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b6m0eoberdjia"]
+[gd_scene load_steps=19 format=3 uid="uid://b6m0eoberdjia"]
 
 [ext_resource type="PackedScene" uid="uid://bxvyqs010obxu" path="res://scenes/world.tscn" id="1_gphd6"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_qbbn2"]
@@ -7,13 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://1wmh7fl8b55w" path="res://scenes/player.tscn" id="4_kw61d"]
 [ext_resource type="Script" path="res://scenes/player_camera.gd" id="5_dcmbd"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="5_k53qs"]
-[ext_resource type="PackedScene" uid="uid://dfasmvevnkqlv" path="res://scenes/teleport.tscn" id="6_jmxoo"]
+[ext_resource type="PackedScene" path="res://scenes/teleport.tscn" id="6_jmxoo"]
 [ext_resource type="Script" path="res://scripts/money_label.gd" id="8_gsygp"]
 [ext_resource type="PackedScene" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
 [ext_resource type="PackedScene" uid="uid://c8wam82o4tpa" path="res://scenes/views/bucket_fill_view.tscn" id="10_v3rci"]
 [ext_resource type="PackedScene" uid="uid://6y4yg73so1d5" path="res://scenes/gui/menu.tscn" id="11_iy8x7"]
 [ext_resource type="PackedScene" uid="uid://cwea1jg54vlwh" path="res://scenes/shop/dokmanni.tscn" id="12_hbpd2"]
 [ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shop/shopkeeper.tscn" id="13_l4n53"]
+[ext_resource type="PackedScene" uid="uid://cdhkhaas52uc4" path="res://scenes/gui/help_text.tscn" id="13_nj5j4"]
 
 [sub_resource type="Resource" id="Resource_2rr4b"]
 script = ExtResource("5_k53qs")
@@ -121,6 +122,13 @@ offset_bottom = 251.0
 scale = Vector2(1, 1)
 
 [node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HelpText" parent="HUD" instance=ExtResource("13_nj5j4")]
+visible = false
+offset_left = 247.0
+offset_top = 0.0
+offset_right = 467.0
+offset_bottom = 45.0
 
 [node name="UI" type="Control" parent="HUD"]
 layout_mode = 3
