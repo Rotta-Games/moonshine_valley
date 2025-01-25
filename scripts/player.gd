@@ -142,28 +142,27 @@ func _act_tap():
 		Action.BUY_YEAST:
 			if money_amount_cents < yeast_price_cents:
 				return
-			#var yeast = self._new_yeast()
-			#var ok = inventory.add_item(yeast, 1)
-			var yea = yeast_scene.instantiate()
-			inventory.add_item(yea.item, 1)	
+
+			var yeast_item = yeast_scene.instantiate()
+			var ok = inventory.add_item(yeast_item.item, 1)	
 			
-			#if ok:
-			#	money_amount_cents -= yeast_price_cents
+			if ok:
+				money_amount_cents -= yeast_price_cents
 			
 		Action.BUY_SUGAR:
 			if money_amount_cents < sugar_price_cents:
 				return
-			#var sugar = self._new_sugar()
-			#var ok = inventory.add_item(sugar, 1)
-			#if ok:
-			#	money_amount_cents -= sugar_price_cents
+			var sugar_item = sugar_scene.instantiate()
+			var ok = inventory.add_item(sugar_item.item, 1)	
+			if ok:
+				money_amount_cents -= sugar_price_cents
 		Action.BUY_BUCKET:
 			if money_amount_cents < bucket_price_cents:
 				return
-			#var bucket = self._new_bucket()
-			#var ok = inventory.add_item(bucket, 1)
-			#if ok:
-			#	money_amount_cents -= bucket_price_cents
+			var bucket_item = bucket_scene.instantiate()
+			var ok = inventory.add_item(bucket_item.item, 1)	
+			if ok:
+				money_amount_cents -= bucket_price_cents
 		Action.ACT_BUCKET:
 			print("AUKASE ÄNPÄRI!")
 

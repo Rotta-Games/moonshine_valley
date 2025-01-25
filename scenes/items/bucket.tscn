@@ -1,14 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://cp680pbem7jfl"]
+[gd_scene load_steps=6 format=3 uid="uid://bgd0g3783j5kc"]
 
 [ext_resource type="Script" path="res://scripts/yeast.gd" id="1_hrfrk"]
 [ext_resource type="Texture2D" uid="uid://pwk40xte5av0" path="res://assets/gfx/objects.png" id="2_mffd4"]
+[ext_resource type="Script" path="res://scripts/item.gd" id="2_tm7lg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8wvoi"]
 atlas = ExtResource("2_mffd4")
 region = Rect2(0.237608, 0.187588, 16.08, 16.1211)
 
+[sub_resource type="Resource" id="Resource_sp2a0"]
+script = ExtResource("2_tm7lg")
+name = "Ämpäri"
+description = "Tämä on ämpäri"
+ui_icon = SubResource("AtlasTexture_8wvoi")
+stackable = false
+stack_size = 0
+
 [node name="Yeast" type="Node2D"]
 script = ExtResource("1_hrfrk")
+item = SubResource("Resource_sp2a0")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_8wvoi")
