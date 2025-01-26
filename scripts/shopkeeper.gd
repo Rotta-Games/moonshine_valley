@@ -4,12 +4,16 @@ extends Node2D
 @export var id: String
 @export var picture: Texture
 
+@onready var audio_player = $AudioStreamPlayer2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	SignalManager.send_speak.connect(_on_send_speak)
 	if (picture):
 		$Sprite2D.texture = picture;
-	pass # Replace with function body.
 
+func _on_send_speak(_id, _act):
+	audio_player.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

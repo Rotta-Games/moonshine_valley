@@ -1,9 +1,14 @@
 extends Node2D
 @export var id: String
 
+@onready var audio_player = $AudioStreamPlayer2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	SignalManager.send_speak.connect(_on_send_speak)
+
+func _on_send_speak(_id, _act):
+	audio_player.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
