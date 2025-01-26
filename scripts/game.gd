@@ -4,7 +4,7 @@ extends Node2D
 @onready var _bucket_observe_view: Control = $"WindowCanvasLayer/BucketObserveView"
 @onready var _inventory_menu := $"WindowCanvasLayer/InventoryMenu"
 
-signal bucket_sold(bucket_state: Bucket.State)
+signal bucket_sold(bucket_value: float)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,5 +30,5 @@ func _on_bucket_fill_view_closed() -> void:
 
 func _on_bucket_entered_selling_area(body: Node2D) -> void:
 	if body is Bucket:
-		bucket_sold.emit(body.state)
+		bucket_sold.emit(body.get_value())
 		body.queue_free()

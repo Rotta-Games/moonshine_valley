@@ -218,18 +218,9 @@ func _update_money(value) -> void:
 	money_amount_cents = value
 	money_changed.emit(money_amount_cents)
 
-
-func _on_bucket_sold(bucket_state: Bucket.State) -> void:
-	match bucket_state:
-		Bucket.State.READY:
-			money_amount_cents += 50_00
-		Bucket.State.SPOILED:
-			money_amount_cents += 1_00
-		Bucket.State.FERMENTING:
-			money_amount_cents += 5_00
-		Bucket.State.MISSING_INGREDIENTS:
-			money_amount_cents += 0_50
-
-
 func add_bottle():
 	inventory.add_item(bottle_item.item, 1)	
+
+func _on_bucket_sold(bucket_value: float) -> void:
+	print("gaining money: " + str(50_00 * bucket_value))
+	money_amount_cents += 50_00 * bucket_value
