@@ -13,13 +13,13 @@ var enter_shop_phrases = ['What?','Welcome!', 'What can I get you?', 'YO!', 'We 
 var no_money_phares = ['You need money u know', 'No money, no honey', 'uuhmmm... you don\'t have money?']
 var buying_product_phrases = ['Empty handed?', 'Unless you got product, get out', 'Not sure if I like you', 'Got something to sell?', 'Waiting for a shipment', 'Water is free you know']
 
-var too_much_sugar_phrases = ['Too much sugar', 'Dude, tastes like sugar', 'Something wrong with ingredients']
-var not_enough_sugar_phrases = ['Did you forget to add sugar?', 'Sour special?', 'Where\'s my sugar??']
-var too_much_yeast_phrases = ['Too much yeast', 'Mmm, yeast..']
-var not_enough_yeast_phrases = ['Did you forget to add yeast?', 'I don\'t think you nailed ingredients']
-var too_early_product_phrases = ['That was not ready yet', 'Your product was shipped too early', 'Patience buddy']
-var spoiled_product_phrases = ['Already gone bad', 'Smells bad', 'Smells like failure to me']
-var perfect_product_phrases = ['Wow, this is perfect', 'DELICIOUS', 'I need more of this', 'Holy moly!', 'Very good', 'Couldn\'t ask for more']
+var too_much_sugar_phrases = ['That\'s sweet as fudge', 'Is there anything else than sugar?', 'Is this dessert or kilju?']
+var not_enough_sugar_phrases = ['Did you even put sugar in here?', 'Sour special?', 'Dude...that yeast is dead', 'You know that kilju needs other ingredients than yeast as well?']
+var too_much_yeast_phrases = ['That\'s yeasty', 'Mmm, yeast..', 'too much yeast....hyissss']
+var not_enough_yeast_phrases = ['Is this sugar water?', 'What is this? Sugar and water?', 'This is the worst sima I\'ve ever tasted',]
+var too_early_product_phrases = ['That was not ready yet', 'This is going to give me diarrhea', 'Patience buddy', 'Is there even alcohol in this thing?']
+var spoiled_product_phrases = ['This smells bad....', 'What happened here?', 'Is that mold?', 'I\'m not drinking that', 'I\'m not buying that', 'This is not good']
+var perfect_product_phrases = ['Wow, this is perfect', 'DELICIOUS', 'I need more of this', 'Holy moly!', 'Very good', 'YUMMY YUMMY']
 
 func _ready() -> void:
 	send_speak.connect(_on_send_speak)
