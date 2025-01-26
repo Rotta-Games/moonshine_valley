@@ -4,7 +4,7 @@ extends Control
 @onready var _container: BoxContainer = $"BoxContainer"
 @onready var _start_button: Button = $"BoxContainer/Start"
 @onready var _instructions_button: Button = $"BoxContainer/Instructions"
-@onready var _instructions_text: RichTextLabel = $"InstructionText"
+@onready var _instructions_text := $"InstructionText"
 
 
 # Called when the node enters the scene tree for the first time.
