@@ -65,10 +65,9 @@ func fermentation_ongoing() -> bool:
 	return _yeast_count > 0 and _sugar_count > 0 and _water_count > 0
 	
 func fermentation_progress() -> float:
-	var time = READY_TIME
 	if _has_too_much_ingredients():
-		time = SPOIL_TIME_TOO_MUCH_INGREDIENTS
-	return _fermentation_time / time # max 1.0
+		return min(0.05, 0.3 - (_fermentation_time / SPOIL_TIME_TOO_MUCH_INGREDIENTS))
+	return _fermentation_time / READY_TIME # max 1.0
 	
 func _set_ready():
 	state = State.READY

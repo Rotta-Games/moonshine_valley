@@ -7,7 +7,7 @@ var active = false
 func _ready():
 	self.visible = false
 	player.pause_button_pressed.connect(_on_pause_button_pressed)
-	process_mode = Node.PROCESS_MODE_PAUSABLE
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _on_pause_button_pressed():
 	$BoxContainer/ResumeButton.grab_focus()
@@ -24,17 +24,20 @@ func _on_help_button_pressed():
 	pass # Replace with function body.
 
 func _show():
+	get_tree().paused = true
 	set_process_input(true)
 	active = true
 	self.show()
 
 func _hide():
+	get_tree().paused = false
 	set_process_input(false)
 	active = false
 	self.hide()
 	
 
 func _on_quit_button_pressed():
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _input(event):

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddu1jd0ywv78r"]
+
+[ext_resource type="Script" path="res://scripts/yeast.gd" id="1_ogvbs"]
+[ext_resource type="Script" path="res://scripts/item.gd" id="2_wp542"]
+[ext_resource type="Texture2D" uid="uid://pwk40xte5av0" path="res://assets/gfx/objects.png" id="3_0luac"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wvoi"]
+atlas = ExtResource("3_0luac")
+region = Rect2(31.5956, 0.15697, 16.2217, 16.845)
+
+[sub_resource type="Resource" id="Resource_dr30w"]
+script = ExtResource("2_wp542")
+name = "Fishing Rod"
+description = "Oh boy... if only I had money to buy this amazing fishing rod"
+ui_icon = SubResource("AtlasTexture_8wvoi")
+stackable = true
+stack_size = 99
+id = 4
+
+[node name="FishingRod" type="Node2D"]
+script = ExtResource("1_ogvbs")
+item = SubResource("Resource_dr30w")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_8wvoi")
+centered = false

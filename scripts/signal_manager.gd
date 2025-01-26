@@ -4,7 +4,7 @@ signal send_speak
 signal receive_speak
 signal send_help_text
 
-enum speak_actions {ENTER_SHOP, YEAST, SUGAR, BUCKET, NO_MONEY, BUYING_PRODUCT, TOO_MUCH_SUGAR, NOT_ENOUGH_SUGAR, TOO_MUCH_YEAST, NOT_ENOUGH_YEAST, PRODUCT_TOO_EARLY, PRODUCT_SPOILED, PRODUCT_PERFECT}
+enum speak_actions {ENTER_SHOP, YEAST, SUGAR, BUCKET, FISHING_ROD, NO_MONEY, BUYING_PRODUCT, TOO_MUCH_SUGAR, NOT_ENOUGH_SUGAR, TOO_MUCH_YEAST, NOT_ENOUGH_YEAST, PRODUCT_TOO_EARLY, PRODUCT_SPOILED, PRODUCT_PERFECT}
 
 var sugar_phrases = ['Baking something?', 'Oh you so sweet', 'That\'s a lot of sugar', 'Are you buing something else?']
 var yeast_phrases = ['Making beer?', 'Holy moly that\'s cheap', 'Buy two and you get two for free', 'Are you buing something else?']

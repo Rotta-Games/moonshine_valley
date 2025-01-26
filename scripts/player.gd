@@ -12,7 +12,9 @@ signal pause_button_pressed()
 @onready var sugar_scene = preload("res://scenes/items/sugar.tscn")
 @onready var bucket_scene = preload("res://scenes/items/bucket.tscn")
 @onready var bottle_scene = preload("res://scenes/items/bottle.tscn")
+@onready var fishing_rod_scene = preload("res://scenes/items/fishing_rod.tscn")
 @onready var bucket_object_scene = preload("res://scenes/objects/bucket.tscn")
+
 @onready var raycast : RayCast2D = $"RayCast2D"
 
 @onready var bucket_fill_sound = preload("res://assets/sfx/vesipaussi.mp3")
@@ -29,7 +31,7 @@ const ACTION_TAP_TIME_THRESHOLD = 0.8
 
 const START_MOENY = 60_00
 
-enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, ACT_BUCKET, FILL_BUCKET}
+enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, ACT_BUCKET, FILL_BUCKET, BUY_FISHING_ROD}
 
 var _current_action: Action = Action.NONE
 var _current_action_target: Node2D = null
@@ -46,11 +48,13 @@ var money_amount_cents: int: set = _update_money
 var yeast_price_cents: int = 25
 var sugar_price_cents: int = 1_50
 var bucket_price_cents: int = 10_00
+var fishing_rod_price_cents: int = 500_00
 
 @onready var yeast_item = yeast_scene.instantiate()
 @onready var bucket_item = bucket_scene.instantiate()
 @onready var sugar_item = sugar_scene.instantiate()
 @onready var bottle_item = bottle_scene.instantiate()
+@onready var fishing_rod_item = fishing_rod_scene.instantiate()
 
 
 @export var inventory: Inventory
@@ -208,6 +212,14 @@ func _act_tap():
 				stream_player2.play()
 				money_amount_cents -= bucket_price_cents
 				SignalManager.send_speak.emit('DOKMANNI', SignalManager.speak_actions.BUCKET)
+		Action.BUY_FISHING_ROD:
+			if money_amount_cents < fishing_rod_price_cents:
+				SignalManager.send_speak.emit('DOKMANNI', SignalManager.speak_actions.NO_MONEY)
+				return
+			var ok = inventory.add_item(fishing_rod_item.item, 1)
+			if ok:
+				money_amount_cents -= fishing_rod_price_cents
+				SignalManager.send_speak.emit('DOKMANNI', SignalManager.speak_actions.FISHING_ROD)
 		Action.ACT_BUCKET:
 			bucket_inspected.emit(_current_action_target as Bucket)
 			_to_be_carrying = false
