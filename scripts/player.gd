@@ -102,24 +102,26 @@ func _physics_process(_delta: float) -> void:
 	var h_direction := Input.get_axis("move_left", "move_right")
 	if h_direction:
 		velocity.x = h_direction * move_speed
-		animation.play("side")
-		if h_direction > 0:
-			animation.flip_h = false
-		else:
-			animation.flip_h = true
 	else:
 		velocity.x = move_toward(velocity.x, 0, move_speed)
 	var v_direction := Input.get_axis("move_up", "move_down")
 	if v_direction:
 		velocity.y = v_direction * move_speed
+	else:
+		velocity.y = move_toward(velocity.x, 0, move_speed)
+
+	if v_direction:
 		if v_direction > 0:
 			animation.play("down")
 		else:
 			animation.play("up")
-	else:
-		velocity.y = move_toward(velocity.x, 0, move_speed)
-
-	if velocity.length() == 0:
+	elif h_direction:
+		animation.play("side")
+		if h_direction > 0:
+			animation.flip_h = false
+		else:
+			animation.flip_h = true
+	elif velocity.length() == 0:
 		animation.frame = 0
 		animation.pause()
 		
