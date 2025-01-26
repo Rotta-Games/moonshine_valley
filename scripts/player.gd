@@ -22,7 +22,7 @@ const JUMP_VELOCITY = -400.0
 const ACTION_HOLD_TIME_THRESHOLD = 0.05
 const ACTION_TAP_TIME_THRESHOLD = 0.8
 
-const START_MOENY = 50_00
+const START_MOENY = 100_00
 
 enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, ACT_BUCKET, FILL_BUCKET}
 
@@ -228,8 +228,13 @@ func add_bottle():
 	inventory.add_item(bottle_item.item, 1)	
 
 
-func sell_bottles():
+func sell_bottles() -> bool:
 	var bottle_amount = inventory.get_item_amount(bottle_item.item)
-	inventory.remove_item(bottle_item.item, -1)
 
+	if bottle_amount == 0:
+		return false
+
+	inventory.remove_item(bottle_item.item, -1)
 	money_amount_cents += bottle_amount * 0_20
+
+	return true

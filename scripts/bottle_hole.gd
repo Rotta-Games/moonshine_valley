@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var audioplayer = $AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,5 +14,6 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	if body.name == "Player":
-		body.sell_bottles()
-
+		var ok = body.sell_bottles()
+		if ok:
+			audioplayer.play()
