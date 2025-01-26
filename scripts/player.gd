@@ -6,6 +6,8 @@ signal pause_button_pressed()
 
 @onready var action_indicator : Sprite2D = $"ActionIndicatorSprite"
 
+@onready var animation := $AnimatedSprite2D
+
 @onready var yeast_scene = preload("res://scenes/items/yeast.tscn")
 @onready var sugar_scene = preload("res://scenes/items/sugar.tscn")
 @onready var bucket_scene = preload("res://scenes/items/bucket.tscn")
@@ -55,6 +57,7 @@ var bucket_price_cents: int = 10_00
 func _ready():
 	_ray_length = int(raycast.target_position.x)
 	money_amount_cents = START_MOENY
+	animation.play("idle")
 
 
 func _input(event):
@@ -94,11 +97,20 @@ func _physics_process(_delta: float) -> void:
 	var h_direction := Input.get_axis("move_left", "move_right")
 	if h_direction:
 		velocity.x = h_direction * move_speed
+		animation.play("side")
+		if h_direction > 0:
+			animation.flip_h = false
+		else:
+			animation.flip_h = true
 	else:
 		velocity.x = move_toward(velocity.x, 0, move_speed)
 	var v_direction := Input.get_axis("move_up", "move_down")
 	if v_direction:
 		velocity.y = v_direction * move_speed
+		if v_direction > 0:
+			animation.play("down")
+		else:
+			animation.play("up")
 	else:
 		velocity.y = move_toward(velocity.x, 0, move_speed)
 		
