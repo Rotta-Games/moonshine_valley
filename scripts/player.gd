@@ -228,15 +228,11 @@ func _update_money(value) -> void:
 	money_amount_cents = value
 	money_changed.emit(money_amount_cents)
 
-
-func _on_bucket_sold(bucket_value: float) -> void:
-	print("gaining money: " + str(50_00 * bucket_value))
-	money_amount_cents += 50_00 * bucket_value
-
+func _on_bucket_sold(bucket: Bucket) -> void:
+	money_amount_cents += 50_00 * bucket.get_value()
 
 func add_bottle():
 	inventory.add_item(bottle_item.item, 1)	
-
 
 func sell_bottles() -> bool:
 	var bottle_amount = inventory.get_item_amount(bottle_item.item)

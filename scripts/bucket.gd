@@ -54,7 +54,7 @@ func get_value() -> float:
 	value -= abs(_sugar_count - OPTIMAL_SUGAR_COUNT) / 10.0
 	value -= abs(_yeast_count - OPTIMAL_YEAST_COUNT) / 10.0
 	if state == State.FERMENTING:
-		var too_early_multiplier = _fermentation_time / READY_TIME / 4.0
+		var too_early_multiplier = _fermentation_time / READY_TIME / 3.0
 		value *= too_early_multiplier
 	return value
 	
@@ -84,3 +84,18 @@ func add_sugar(count: int):
 	
 func add_water(count: int):
 	_water_count += count
+	
+func too_much_sugar():
+	return _sugar_count > OPTIMAL_SUGAR_COUNT
+	
+func not_enough_sugar():
+	return _sugar_count < OPTIMAL_SUGAR_COUNT
+	
+func too_much_yeast():
+	return _yeast_count > OPTIMAL_YEAST_COUNT
+	
+func not_enough_yeast():
+	return _yeast_count < OPTIMAL_YEAST_COUNT
+	
+func too_early():
+	return fermentation_progress() < 1.0
