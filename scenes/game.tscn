@@ -129,6 +129,10 @@ scale = Vector2(1, 1)
 
 [node name="BucketObserveView" parent="WindowCanvasLayer" instance=ExtResource("13_6qf0n")]
 visible = false
+offset_left = 280.0
+offset_top = 58.0
+offset_right = 280.0
+offset_bottom = 58.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
