@@ -19,7 +19,7 @@ func play_text(text: String):
 	label.text = text
 	var tween = get_tree().create_tween()
 	tween.tween_property(label, "visible_ratio", 1, 1)
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(3).timeout
 	label.visible_ratio = 0
 	self.visible = false
 

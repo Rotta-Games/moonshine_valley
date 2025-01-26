@@ -23,7 +23,7 @@ signal pause_button_pressed()
 
 @export var bucket_container: Node2D
 
-const SPEED = 150.0
+const SPEED = 140.0
 const JUMP_VELOCITY = -400.0
 
 const ACTION_HOLD_TIME_THRESHOLD = 0.05
@@ -95,8 +95,6 @@ func _process(delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	var move_speed = SPEED
-	if Input.is_action_pressed("debug_run"):
-		move_speed *= 2
 	if _carrying_item:
 		move_speed /= 2
 	var h_direction := Input.get_axis("move_left", "move_right")
