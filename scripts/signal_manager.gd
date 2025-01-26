@@ -2,6 +2,7 @@ extends Node
 
 signal send_speak
 signal receive_speak
+signal send_help_text
 
 enum speak_actions {ENTER_SHOP, YEAST, SUGAR, BUCKET, NO_MONEY}
 

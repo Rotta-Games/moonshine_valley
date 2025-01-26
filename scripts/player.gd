@@ -12,7 +12,6 @@ signal pause_button_pressed()
 @onready var bottle_scene = preload("res://scenes/items/bottle.tscn")
 @onready var bucket_object_scene = preload("res://scenes/objects/bucket.tscn")
 @onready var raycast : RayCast2D = $"RayCast2D"
-@onready var help_text = $"../HUD/HelpText"
 
 @export var bucket_container: Node2D
 
@@ -136,13 +135,13 @@ func _on_action_indicator_area_2d_area_shape_entered(area_rid: RID, area: Area2D
 	_current_action_target = area.get_parent()
 	var group = area.get_parent().get_groups()[0]
 	if group == "yeast_buy_zone":
-		help_text.play_text(yeast_item.item.description)
+		SignalManager.send_help_text.emit(yeast_item.item.description)
 		_current_action = Action.BUY_YEAST
 	if group == "sugar_buy_zone":
-		help_text.play_text(sugar_item.item.description)
+		SignalManager.send_help_text.emit(sugar_item.item.description)
 		_current_action = Action.BUY_SUGAR
 	if group == "bucket_buy_zone":
-		help_text.play_text(bucket_item.item.description)
+		SignalManager.send_help_text.emit(bucket_item.item.description)
 		_current_action = Action.BUY_BUCKET
 	if group == "bucket":
 		_current_action = Action.ACT_BUCKET
