@@ -1,7 +1,7 @@
 extends Resource
 class_name Item
 
-enum Id {YEAST, SUGAR, BUCKET}
+enum Id {YEAST, SUGAR, BUCKET, BOTTLE}
 
 
 @export var name: String
