@@ -15,6 +15,7 @@ tile_map_data = PackedByteArray("AAAHAAgAAAAKAAAAAAAIAAgAAAAKAAAAAAAJAAgAAAAKAAA
 tile_set = ExtResource("2_d7ijn")
 
 [node name="BottleSpawns" type="Node2D" parent="."]
+process_mode = 3
 
 [node name="BottleSpawn" parent="BottleSpawns" instance=ExtResource("3_4ilww")]
 position = Vector2(511, 217)
