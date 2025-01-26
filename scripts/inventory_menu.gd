@@ -39,11 +39,14 @@ func _process(delta):
 	_highlight_selected()
 	if Input.is_action_just_pressed("player_action"):
 		var item = item_container.get_child(_selected_index).item
-		var item_count = player.inventory.get_item_amount(item)
-		if item_count > 0:
-			player.inventory.remove_item(item, 1)
-			item_used.emit(item.id)
-			
+		if item.id == Item.Id.YEAST or item.id == Item.Id.SUGAR:
+			var item_count = player.inventory.get_item_amount(item)
+			if item_count > 0:
+				player.inventory.remove_item(item, 1)
+				item_used.emit(item.id)
+		#else:
+			# teksti ruudulle: why would you do that??
+
 func _highlight_selected():
 	if _selected_index >= len(item_container.get_children()):
 		return
