@@ -113,15 +113,15 @@ func _update_carrying_item(old_pos: Vector2) -> void:
 
 func _update_action_indicator():
 	if velocity.x > 0:
-		action_indicator.position.x = 20
+		action_indicator.position.x = 18
 	elif velocity.x < 0:
-		action_indicator.position.x = -20
+		action_indicator.position.x = -18
 	elif velocity.y != 0:
 		action_indicator.position.x = 0
 	if velocity.y > 0:
 		action_indicator.position.y = 20
 	elif velocity.y < 0:
-		action_indicator.position.y = -20
+		action_indicator.position.y = -12
 	elif velocity.x != 0:
 		action_indicator.position.y = 0
 		

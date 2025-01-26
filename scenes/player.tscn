@@ -28,7 +28,7 @@ motion_mode = 1
 script = ExtResource("1_whbl5")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(31, 0)
+target_position = Vector2(26, 0)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_so5xi")
@@ -40,8 +40,8 @@ shape = SubResource("RectangleShape2D_b7aly")
 
 [node name="ActionIndicatorSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.156863)
-position = Vector2(20, 0)
-scale = Vector2(22, 22)
+position = Vector2(18, 3)
+scale = Vector2(16, 16)
 texture = SubResource("PlaceholderTexture2D_h0l66")
 
 [node name="ActionIndicatorArea2D" type="Area2D" parent="ActionIndicatorSprite"]
@@ -50,6 +50,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ActionIndicatorSprite/ActionIndicatorArea2D"]
 position = Vector2(0, 8.92063e-09)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_jwjvu")
 
 [connection signal="area_shape_entered" from="ActionIndicatorSprite/ActionIndicatorArea2D" to="." method="_on_action_indicator_area_2d_area_shape_entered"]
