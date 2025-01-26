@@ -21,4 +21,5 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	SignalManager.send_speak.emit(id, SignalManager.speak_actions.ENTER_SHOP)
+	if body.name == "Player":
+		SignalManager.send_speak.emit(id, SignalManager.speak_actions.ENTER_SHOP)

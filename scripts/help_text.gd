@@ -18,6 +18,7 @@ func play_text(sent_text: String):
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(label, "visible_ratio", 1, 1)
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	await get_tree().create_timer(3).timeout
 
 
