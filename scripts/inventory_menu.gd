@@ -14,6 +14,11 @@ func _ready():
 	
 func enable(value: bool):
 	_enabled = value
+	if _enabled:
+		_selected_index = 0
+		_highlight_selected()
+	else:
+		_deselect_all_items()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -30,20 +35,21 @@ func _process(delta):
 	if Input.is_action_just_pressed("move_left"):
 		_selected_index = posmod((_selected_index - 1), len(item_container.get_children()))
 		
-	if _prev_index != _selected_index or _selected_index == -1:
-		_deselect_all_items()
-		if _selected_index == -1:
-			_selected_index = 0
-		item_container.get_child(_selected_index).set_active(true)
-		var new_selection = item_container.get_child(_selected_index)
-		new_selection.set_active(true)
-
+	_deselect_all_items()
+	_highlight_selected()
 	if Input.is_action_just_pressed("player_action"):
 		var item = item_container.get_child(_selected_index).item
 		var item_count = player.inventory.get_item_amount(item)
 		if item_count > 0:
 			player.inventory.remove_item(item, 1)
 			item_used.emit(item.id)
+			
+func _highlight_selected():
+	if _selected_index >= len(item_container.get_children()):
+		return
+	item_container.get_child(_selected_index).set_active(true)
+	var new_selection = item_container.get_child(_selected_index)
+	new_selection.set_active(true)
 
 func _deselect_all_items():
 	for item in item_container.get_children():

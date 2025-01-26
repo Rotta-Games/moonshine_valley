@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@onready var unselect_overlay: ColorRect = $"UnselectOverlay"
+@onready var select_overlay: TextureRect = $"SelectOverlay"
 
 var active: bool = false
 var item: Item = null
@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 func set_active(value: bool):
 	active = value
 	if active:
-		unselect_overlay.hide()
+		select_overlay.show()
+		#modulate = Color(255,255,255,1.0)
 	else:
-		unselect_overlay.show()
+		select_overlay.hide()
