@@ -17,6 +17,7 @@ signal pause_button_pressed()
 
 @onready var bucket_fill_sound = preload("res://assets/sfx/vesipaussi.mp3")
 @onready var stream_player = $AudioStreamPlayer2D
+@onready var stream_player2 = $AudioStreamPlayer2D2
 
 @export var bucket_container: Node2D
 
@@ -183,6 +184,7 @@ func _act_tap():
 			var ok = inventory.add_item(yeast_item.item, 1)
 			
 			if ok:
+				stream_player2.play()
 				money_amount_cents -= yeast_price_cents
 				SignalManager.send_speak.emit('SHALEPA', SignalManager.speak_actions.YEAST)
 			
@@ -192,6 +194,7 @@ func _act_tap():
 				return
 			var ok = inventory.add_item(sugar_item.item, 1)
 			if ok:
+				stream_player2.play()
 				money_amount_cents -= sugar_price_cents
 				SignalManager.send_speak.emit('SHALEPA', SignalManager.speak_actions.SUGAR)
 		Action.BUY_BUCKET:
@@ -200,6 +203,7 @@ func _act_tap():
 				return
 			var ok = inventory.add_item(bucket_item.item, 1)
 			if ok:
+				stream_player2.play()
 				money_amount_cents -= bucket_price_cents
 				SignalManager.send_speak.emit('DOKMANNI', SignalManager.speak_actions.BUCKET)
 		Action.ACT_BUCKET:
