@@ -58,6 +58,7 @@ text = "1. Get bucket
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_h5w2e")
 autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="BoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="BoxContainer/Instructions" to="." method="_on_instructions_pressed"]
