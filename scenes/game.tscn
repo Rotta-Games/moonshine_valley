@@ -174,8 +174,10 @@ script = ExtResource("8_gsygp")
 visible = false
 
 [node name="GameBackgroundMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(304, 137)
 stream = ExtResource("17_75pwq")
 autoplay = true
+attenuation = 0.615572
 parameters/looping = true
 
 [connection signal="bucket_sold" from="." to="Player" method="_on_bucket_sold"]
