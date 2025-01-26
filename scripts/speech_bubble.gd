@@ -24,6 +24,5 @@ func play_text(text: String):
 	self.visible = false
 
 func _on_speak(speak_id: String, text: String):
-	print(id)
 	if id == speak_id:
 		play_text(text)

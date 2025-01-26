@@ -13,6 +13,9 @@ signal pause_button_pressed()
 @onready var bucket_object_scene = preload("res://scenes/objects/bucket.tscn")
 @onready var raycast : RayCast2D = $"RayCast2D"
 
+@onready var bucket_fill_sound = preload("res://assets/sfx/vesipaussi.mp3")
+@onready var stream_player = $AudioStreamPlayer2D
+
 @export var bucket_container: Node2D
 
 const SPEED = 150.0
@@ -21,7 +24,7 @@ const JUMP_VELOCITY = -400.0
 const ACTION_HOLD_TIME_THRESHOLD = 0.05
 const ACTION_TAP_TIME_THRESHOLD = 0.8
 
-const START_MOENY = 100_00
+const START_MOENY = 60_00
 
 enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, ACT_BUCKET, FILL_BUCKET}
 
@@ -194,6 +197,8 @@ func _act_tap():
 				inventory.remove_item(bucket_item.item, 1)
 				bucket.add_water(100)
 				bucket_container.add_child(bucket)
+				stream_player.stream = bucket_fill_sound
+				stream_player.play()
 
 func _act_hold():
 	match _current_action:
