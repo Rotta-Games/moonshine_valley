@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=4 uid="uid://12xj50xlse6g"]
+[gd_scene load_steps=9 format=4 uid="uid://12xj50xlse6g"]
 
 [ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shop/shopkeeper.tscn" id="1_5huja"]
 [ext_resource type="Script" path="res://scenes/shop/s_market_shop.gd" id="1_etm76"]
 [ext_resource type="TileSet" uid="uid://datlpqy0s1nau" path="res://assets/world.tres" id="3_f6a26"]
+[ext_resource type="Texture2D" uid="uid://ua8e6po5nm80" path="res://assets/gfx/lady_shalepa_sheet.png" id="3_m0lw5"]
 [ext_resource type="PackedScene" uid="uid://cq7f4obgtlehj" path="res://scenes/shop/shop_shelf.tscn" id="4_fr3hd"]
 [ext_resource type="TileSet" uid="uid://bd5nuaxumidqj" path="res://assets/objects.tres" id="5_p8osl"]
-[ext_resource type="PackedScene" path="res://scenes/objects/rack.tscn" id="6_62261"]
+[ext_resource type="PackedScene" uid="uid://ddlmmry2mptq5" path="res://scenes/objects/rack.tscn" id="6_62261"]
 [ext_resource type="PackedScene" uid="uid://cfr4figxbko1y" path="res://scenes/bottle_hole.tscn" id="7_a8pab"]
 
 [node name="SMarketShop" type="Node2D"]
@@ -14,6 +15,7 @@ script = ExtResource("1_etm76")
 [node name="Shopkeeper" parent="." instance=ExtResource("1_5huja")]
 position = Vector2(66, 51)
 id = "SHALEPA"
+picture = ExtResource("3_m0lw5")
 
 [node name="TileMap" type="Node2D" parent="."]
 

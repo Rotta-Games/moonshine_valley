@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dfasmvevnkqlv" path="res://scenes/teleport.tscn" id="6_jmxoo"]
 [ext_resource type="Script" path="res://scripts/money_label.gd" id="8_gsygp"]
 [ext_resource type="PackedScene" uid="uid://c1m22va7uwgtf" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
-[ext_resource type="PackedScene" uid="uid://tvnol765ci35" path="res://scenes/shop/buyer.tscn" id="10_6wikk"]
+[ext_resource type="PackedScene" uid="uid://cvdsl6wus20ct" path="res://scenes/shop/buyer.tscn" id="10_6wikk"]
 [ext_resource type="AudioStream" uid="uid://cut6e1mrrlb23" path="res://assets/sfx/ovenavaus.mp3" id="10_fi2gm"]
 [ext_resource type="PackedScene" uid="uid://c8wam82o4tpa" path="res://scenes/views/bucket_fill_view.tscn" id="10_v3rci"]
 [ext_resource type="PackedScene" uid="uid://6y4yg73so1d5" path="res://scenes/gui/menu.tscn" id="11_iy8x7"]

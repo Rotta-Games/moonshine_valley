@@ -2,9 +2,12 @@ extends Node2D
 
 @onready var speech_bubble: SpeechBubble = $"SpeechBubble"
 @export var id: String
+@export var picture: Texture
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if (picture):
+		$Sprite2D.texture = picture;
 	pass # Replace with function body.
 
 
