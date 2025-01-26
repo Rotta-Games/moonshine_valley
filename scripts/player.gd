@@ -116,7 +116,8 @@ func _physics_process(_delta: float) -> void:
 		velocity.y = move_toward(velocity.x, 0, move_speed)
 
 	if velocity.length() == 0:
-		animation.play("idle")
+		animation.frame = 0
+		animation.pause()
 		
 	var cur_pos = position
 
