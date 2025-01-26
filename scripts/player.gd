@@ -199,6 +199,8 @@ func _act_tap():
 				bucket_container.add_child(bucket)
 				stream_player.stream = bucket_fill_sound
 				stream_player.play()
+			else:
+				SignalManager.send_help_text.emit("If only I had a bucket, I could fill it with water!")
 
 func _act_hold():
 	match _current_action:
@@ -238,6 +240,7 @@ func sell_bottles() -> bool:
 	var bottle_amount = inventory.get_item_amount(bottle_item.item)
 
 	if bottle_amount == 0:
+		SignalManager.send_help_text.emit("If I can find bottles, I can make real dough!")
 		return false
 
 	inventory.remove_item(bottle_item.item, -1)
