@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://biqspkke1m827" path="res://assets/gfx/tileset.png" id="1_ja111"]
 [ext_resource type="TileSet" uid="uid://datlpqy0s1nau" path="res://assets/world.tres" id="2_7qi56"]
-[ext_resource type="PackedScene" uid="uid://cq2ibtiert0cj" path="res://scenes/home/bucket_fill_area.tscn" id="2_rmxo1"]
+[ext_resource type="PackedScene" path="res://scenes/home/bucket_fill_area.tscn" id="2_rmxo1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_miltj"]
 texture = ExtResource("1_ja111")
