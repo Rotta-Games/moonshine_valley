@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnddr8hfm1ty2"]
+[gd_scene load_steps=4 format=3 uid="uid://bnddr8hfm1ty2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_pwgrl"]
 [ext_resource type="AudioStream" uid="uid://ctv0yfnrexp8b" path="res://assets/sfx/kiljuvainiolla_remix_130bps_192k.mp3" id="2_h5w2e"]
+[ext_resource type="Texture2D" uid="uid://d2qxjvo71adcv" path="res://assets/gfx/game_menu.png" id="2_t37eu"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -9,14 +10,11 @@ anchors_preset = 0
 focus_mode = 2
 script = ExtResource("1_pwgrl")
 
-[node name="Title" type="Label" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 187.0
-offset_top = 35.0
-offset_right = 363.0
-offset_bottom = 51.0
-rotation = 0.0174533
-text = "Kiljuvainio"
+offset_right = 481.0
+offset_bottom = 272.0
+texture = ExtResource("2_t37eu")
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 0
