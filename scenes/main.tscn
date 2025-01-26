@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnddr8hfm1ty2"]
+[gd_scene load_steps=7 format=3 uid="uid://bnddr8hfm1ty2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_pwgrl"]
 [ext_resource type="AudioStream" uid="uid://ctv0yfnrexp8b" path="res://assets/sfx/kiljuvainiolla_remix_130bps_192k.mp3" id="2_h5w2e"]
@@ -7,6 +7,16 @@
 [sub_resource type="LabelSettings" id="LabelSettings_qjpbe"]
 font_size = 12
 outline_size = 13
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m3j3a"]
+font_size = 14
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2eg4j"]
+font_size = 8
+outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Control"]
@@ -48,6 +58,7 @@ layout_mode = 2
 text = "Quit"
 
 [node name="InstructionText" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 21.0
 offset_top = 75.0
@@ -73,8 +84,31 @@ stream = ExtResource("2_h5w2e")
 autoplay = true
 parameters/looping = true
 
+[node name="CreditsContainer" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+
+[node name="Credits" type="Label" parent="CreditsContainer"]
+offset_left = 91.0
+offset_top = 97.0
+offset_right = 399.0
+offset_bottom = 179.0
+text = "DeWa: Code
+JanisKeisari: Graphics
+Mutjake: Sound Design
+Skorpy: Code
+zaih: Code"
+label_settings = SubResource("LabelSettings_m3j3a")
+
+[node name="Info" type="Label" parent="CreditsContainer"]
+offset_left = 279.0
+offset_top = 254.0
+offset_right = 479.0
+offset_bottom = 269.0
+text = "Press <cancel> to go back"
+label_settings = SubResource("LabelSettings_2eg4j")
+
 [connection signal="pressed" from="BoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="BoxContainer/Instructions" to="." method="_on_instructions_pressed"]
-[connection signal="pressed" from="BoxContainer/Credits" to="." method="_on_instructions_pressed"]
 [connection signal="pressed" from="BoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="BoxContainer/Quit" to="." method="_on_quit_pressed"]

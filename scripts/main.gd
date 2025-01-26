@@ -6,7 +6,7 @@ extends Control
 @onready var _instructions_button: Button = $"BoxContainer/Instructions"
 @onready var _instructions_text := $"InstructionText"
 @onready var _credits_button: Button = $"BoxContainer/Credits"
-
+@onready var _credits_container := $"CreditsContainer"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,7 +39,12 @@ func _input(event: InputEvent) -> void:
 			_instructions_text.visible = false
 			_container.visible = true
 			_instructions_button.grab_focus()
+		if _credits_container.visible:
+			_credits_container.visible = false
+			_container.visible = true
+			_credits_button.grab_focus()
 
 
 func _on_credits_pressed():
-	get_tree().change_scene_to_file("res://scenes/credits.tscn")# Replace with function body.
+	_credits_container.visible = true
+	_container.visible = false
