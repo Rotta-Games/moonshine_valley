@@ -66,7 +66,7 @@ func fermentation_ongoing() -> bool:
 	
 func fermentation_progress() -> float:
 	if _has_too_much_ingredients():
-		return min(0.05, 0.3 - (_fermentation_time / SPOIL_TIME_TOO_MUCH_INGREDIENTS))
+		return min(0.05, 0.3 - (_fermentation_time / (SPOIL_TIME_TOO_MUCH_INGREDIENTS-10)))
 	return _fermentation_time / READY_TIME # max 1.0
 	
 func _set_ready():

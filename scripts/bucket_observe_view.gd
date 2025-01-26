@@ -13,12 +13,14 @@ const SPOILED_FRAME = 9
 const TIME_PER_FRAME := 0.09
 var cur_frame_time := 0.0
 var _bucket : Bucket = null
+var _hyiss_played = false
+
 signal closed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
@@ -27,6 +29,9 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("player_cancel"):
 		_bucket = null
+		_hyiss_played = false
+		audio_player.stop()
+		audio_player2.stop()
 		timer.stop()
 		closed.emit()
 		return
@@ -48,7 +53,10 @@ func _check_frame(delta: float):
 	if _bucket and _bucket.state == Bucket.State.SPOILED:
 		texture.texture.atlas.region.position.x = FRAME_WIDTH * SPOILED_FRAME
 		_animation_playing = false
-		audio_player2.play()
+		audio_player.stop()
+		if not _hyiss_played:
+			audio_player2.play()
+			_hyiss_played = true
 	
 	if not _animation_playing:
 		return

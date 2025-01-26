@@ -165,6 +165,7 @@ scale = Vector2(1, 1.00868)
 shape = SubResource("RectangleShape2D_b7aly")
 
 [node name="ActionIndicatorSprite" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.156863)
 position = Vector2(18, 3)
 scale = Vector2(16, 16)
