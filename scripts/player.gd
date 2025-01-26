@@ -9,6 +9,7 @@ signal pause_button_pressed()
 @onready var yeast_scene = preload("res://scenes/items/yeast.tscn")
 @onready var sugar_scene = preload("res://scenes/items/sugar.tscn")
 @onready var bucket_scene = preload("res://scenes/items/bucket.tscn")
+@onready var bottle_scene = preload("res://scenes/items/bottle.tscn")
 @onready var bucket_object_scene = preload("res://scenes/objects/bucket.tscn")
 @onready var raycast : RayCast2D = $"RayCast2D"
 @onready var help_text = $"../HUD/HelpText"
@@ -44,6 +45,7 @@ var bucket_price_cents: int = 10_00
 @onready var yeast_item = yeast_scene.instantiate()
 @onready var bucket_item = bucket_scene.instantiate()
 @onready var sugar_item = sugar_scene.instantiate()
+@onready var bottle_item = bottle_scene.instantiate()
 
 
 @export var inventory: Inventory
@@ -160,7 +162,7 @@ func _act_tap():
 			if money_amount_cents < yeast_price_cents:
 				return
 
-			var ok = inventory.add_item(yeast_item.item, 1)	
+			var ok = inventory.add_item(yeast_item.item, 1)
 			
 			if ok:
 				money_amount_cents -= yeast_price_cents
@@ -168,13 +170,13 @@ func _act_tap():
 		Action.BUY_SUGAR:
 			if money_amount_cents < sugar_price_cents:
 				return
-			var ok = inventory.add_item(sugar_item.item, 1)	
+			var ok = inventory.add_item(sugar_item.item, 1)
 			if ok:
 				money_amount_cents -= sugar_price_cents
 		Action.BUY_BUCKET:
 			if money_amount_cents < bucket_price_cents:
 				return
-			var ok = inventory.add_item(bucket_item.item, 1)	
+			var ok = inventory.add_item(bucket_item.item, 1)
 			if ok:
 				money_amount_cents -= bucket_price_cents
 		Action.ACT_BUCKET:
@@ -227,3 +229,7 @@ func _on_bucket_sold(bucket_state: Bucket.State) -> void:
 			money_amount_cents += 5_00
 		Bucket.State.MISSING_INGREDIENTS:
 			money_amount_cents += 0_50
+
+
+func add_bottle():
+	inventory.add_item(bottle_item.item, 1)	
