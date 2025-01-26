@@ -10,8 +10,8 @@ region = Rect2(0.237608, 0.187588, 16.08, 16.1211)
 
 [sub_resource type="Resource" id="Resource_sp2a0"]
 script = ExtResource("2_tm7lg")
-name = "Ämpäri"
-description = "Ämpäri on kiljukeisarin tärkein työväline"
+name = "Bucket"
+description = "Bucket is the most important tool of future kilju kingpin"
 ui_icon = SubResource("AtlasTexture_8wvoi")
 stackable = true
 stack_size = 10

@@ -10,8 +10,8 @@ region = Rect2(15.4846, 0.420004, 16.0535, 16.582)
 
 [sub_resource type="Resource" id="Resource_b14d5"]
 script = ExtResource("2_myusr")
-name = "Hiiva"
-description = "Hiivan valinta on tärkeä osa kiljuntekoa"
+name = "Yeast"
+description = "Choosing the right yeast is really important when you are making kilju"
 ui_icon = SubResource("AtlasTexture_8wvoi")
 stackable = true
 stack_size = 99
