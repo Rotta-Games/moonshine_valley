@@ -25,6 +25,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("player_cancel"):
 		_bucket = null
+		timer.stop()
 		closed.emit()
 		return
 		
@@ -54,7 +55,6 @@ func _check_frame(delta: float):
 			audio_player.play()
 	if not has_next_frame:
 		_animation_playing = false
-
 
 func _next_frame() -> bool:
 	texture.texture.atlas.region.position.x += FRAME_WIDTH
