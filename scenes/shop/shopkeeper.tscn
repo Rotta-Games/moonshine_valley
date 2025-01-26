@@ -25,7 +25,7 @@ script = ExtResource("1_u284p")
 sprite_frames = SubResource("SpriteFrames_wsubn")
 
 [node name="SpeechBubble" parent="." instance=ExtResource("2_5u7rm")]
-position = Vector2(97, 1)
+position = Vector2(10, -20)
 
 [node name="Area2D" type="Area2D" parent="."]
 

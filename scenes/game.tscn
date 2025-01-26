@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://1wmh7fl8b55w" path="res://scenes/player.tscn" id="4_kw61d"]
 [ext_resource type="Script" path="res://scenes/player_camera.gd" id="5_dcmbd"]
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="5_k53qs"]
-[ext_resource type="PackedScene" uid="uid://dfasmvevnkqlv" path="res://scenes/teleport.tscn" id="6_jmxoo"]
+[ext_resource type="PackedScene" path="res://scenes/teleport.tscn" id="6_jmxoo"]
 [ext_resource type="Script" path="res://scripts/money_label.gd" id="8_gsygp"]
 [ext_resource type="PackedScene" uid="uid://c1m22va7uwgtf" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
 [ext_resource type="PackedScene" uid="uid://c8wam82o4tpa" path="res://scenes/views/bucket_fill_view.tscn" id="10_v3rci"]

@@ -160,25 +160,31 @@ func _act_tap():
 			return
 		Action.BUY_YEAST:
 			if money_amount_cents < yeast_price_cents:
+				SignalManager.send_speak.emit('SHALEPA', SignalManager.speak_actions.NO_MONEY)
 				return
 
 			var ok = inventory.add_item(yeast_item.item, 1)
 			
 			if ok:
 				money_amount_cents -= yeast_price_cents
+				SignalManager.send_speak.emit('SHALEPA', SignalManager.speak_actions.YEAST)
 			
 		Action.BUY_SUGAR:
 			if money_amount_cents < sugar_price_cents:
+				SignalManager.send_speak.emit('SHALEPA', SignalManager.speak_actions.NO_MONEY)
 				return
 			var ok = inventory.add_item(sugar_item.item, 1)
 			if ok:
 				money_amount_cents -= sugar_price_cents
+				SignalManager.send_speak.emit('SHALEPA', SignalManager.speak_actions.SUGAR)
 		Action.BUY_BUCKET:
 			if money_amount_cents < bucket_price_cents:
+				SignalManager.send_speak.emit('DOKMANNI', SignalManager.speak_actions.NO_MONEY)
 				return
 			var ok = inventory.add_item(bucket_item.item, 1)
 			if ok:
 				money_amount_cents -= bucket_price_cents
+				SignalManager.send_speak.emit('DOKMANNI', SignalManager.speak_actions.BUCKET)
 		Action.ACT_BUCKET:
 			bucket_inspected.emit(_current_action_target as Bucket)
 			_to_be_carrying = false

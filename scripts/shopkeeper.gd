@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var speech_bubble: SpeechBubble = $"SpeechBubble"
+@export var id: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,4 +14,4 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	speech_bubble.play_text("mee vittuun :D")
+	SignalManager.send_speak.emit(id, SignalManager.speak_actions.ENTER_SHOP)

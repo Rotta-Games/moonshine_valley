@@ -13,6 +13,7 @@ script = ExtResource("1_etm76")
 
 [node name="Shopkeeper" parent="." instance=ExtResource("1_5huja")]
 position = Vector2(66, 51)
+id = "SHALEPA"
 
 [node name="TileMap" type="Node2D" parent="."]
 
