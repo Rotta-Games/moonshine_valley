@@ -2,6 +2,8 @@ extends Control
 @onready var player = get_node("../../Player")
 
 
+@onready var help_butan = $BoxContainer/HelpButton
+
 var active = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +23,7 @@ func _on_resume_button_pressed():
 	_hide()
 
 func _on_help_button_pressed():
-	pass # Replace with function body.
+	help_butan.text += ":D"
 
 func _show():
 	get_tree().paused = true
