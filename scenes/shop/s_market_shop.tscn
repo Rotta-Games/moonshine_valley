@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://12xj50xlse6g"]
+[gd_scene load_steps=10 format=4 uid="uid://12xj50xlse6g"]
 
 [ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shop/shopkeeper.tscn" id="1_5huja"]
 [ext_resource type="Script" path="res://scenes/shop/s_market_shop.gd" id="1_etm76"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cq7f4obgtlehj" path="res://scenes/shop/shop_shelf.tscn" id="4_fr3hd"]
 [ext_resource type="PackedScene" uid="uid://cauh4shb5e7vt" path="res://scenes/objects/bucket.tscn" id="5_buffe"]
 [ext_resource type="TileSet" uid="uid://bd5nuaxumidqj" path="res://assets/objects.tres" id="5_p8osl"]
+[ext_resource type="PackedScene" uid="uid://ddlmmry2mptq5" path="res://scenes/objects/rack.tscn" id="6_g3afk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_it37c"]
 texture = ExtResource("2_scuqp")
@@ -132,13 +133,11 @@ position = Vector2(66, 51)
 [node name="Foreground_top" type="TileMapLayer" parent="TileMap"]
 z_index = 2
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAMAAQAAAAAAAUAAAANAAQAAAABAAUAAAAOAAQAAAACAAUAAAAPAAQAAAAAAAUAAAAaAAQAAAACAAUAAAAZAAQAAAABAAUAAAAYAAQAAAAAAAUAAAAXAAQAAAACAAUAAAAWAAQAAAABAAUAAAAVAAQAAAAAAAUAAAAUAAQAAAACAAUAAAATAAQAAAABAAUAAAASAAQAAAAAAAUAAAARAAQAAAACAAUAAAAQAAQAAAABAAUAAAAMAAkAAAAAAAUAAAANAAkAAAABAAUAAAAOAAkAAAACAAUAAAAPAAkAAAAAAAUAAAAQAAkAAAABAAUAAAAZAAkAAAABAAUAAAAaAAkAAAACAAUAAAAYAAkAAAAAAAUAAAAXAAkAAAACAAUAAAAWAAkAAAABAAUAAAAVAAkAAAAAAAUAAAAUAAkAAAACAAUAAAATAAkAAAABAAUAAAASAAkAAAAAAAUAAAARAAkAAAACAAUAAAA=")
 tile_set = SubResource("TileSet_qi08l")
 
 [node name="Foreground_bottom" type="TileMapLayer" parent="TileMap"]
 z_index = -98
 use_parent_material = true
-tile_map_data = PackedByteArray("AAANAAYAAAABAAcAAAANAAUAAAABAAYAAAAMAAUAAAAAAAYAAAAMAAYAAAAAAAcAAAAOAAUAAAACAAYAAAAOAAYAAAACAAcAAAAPAAUAAAAAAAYAAAAPAAYAAAAAAAcAAAAQAAUAAAABAAYAAAAQAAYAAAABAAcAAAARAAYAAAACAAcAAAAWAAUAAAABAAYAAAARAAUAAAACAAYAAAASAAUAAAAAAAYAAAATAAUAAAABAAYAAAAUAAUAAAACAAYAAAAVAAUAAAAAAAYAAAAXAAUAAAACAAYAAAAYAAUAAAAAAAYAAAAZAAUAAAABAAYAAAAaAAUAAAACAAYAAAAaAAYAAAACAAcAAAAZAAYAAAABAAcAAAAYAAYAAAAAAAcAAAAXAAYAAAACAAcAAAAWAAYAAAABAAcAAAAVAAYAAAAAAAcAAAAUAAYAAAACAAcAAAATAAYAAAABAAcAAAASAAYAAAAAAAcAAAAMAAoAAAAAAAYAAAANAAoAAAABAAYAAAAOAAoAAAACAAYAAAAPAAoAAAAAAAYAAAAQAAoAAAABAAYAAAARAAoAAAACAAYAAAASAAoAAAAAAAYAAAATAAoAAAABAAYAAAAUAAoAAAACAAYAAAAVAAoAAAAAAAYAAAAWAAoAAAABAAYAAAAXAAoAAAACAAYAAAAYAAoAAAAAAAYAAAAZAAoAAAABAAYAAAAaAAoAAAACAAYAAAAaAAsAAAACAAcAAAAZAAsAAAABAAcAAAAYAAsAAAAAAAcAAAAXAAsAAAACAAcAAAAWAAsAAAABAAcAAAAVAAsAAAAAAAcAAAAUAAsAAAACAAcAAAATAAsAAAABAAcAAAASAAsAAAAAAAcAAAARAAsAAAACAAcAAAAQAAsAAAABAAcAAAAPAAsAAAAAAAcAAAAOAAsAAAACAAcAAAANAAsAAAABAAcAAAAMAAsAAAAAAAcAAAA=")
 tile_set = SubResource("TileSet_qi08l")
 
 [node name="Floor" type="TileMapLayer" parent="TileMap"]
@@ -155,6 +154,21 @@ position = Vector2(0, 6)
 tile_map_data = PackedByteArray("AAD5////AAABAAAAAAD6////AAABAAAAAAD8////AAABAAAAAAD9////AAABAAAAAAD/////AAABAAAAAAAAAP//AAABAAAAAAACAP//AAABAAAAAAADAP//AAABAAAAAAAFAP//AAABAAAAAAAGAP//AAABAAAAAAD5/wAAAAABAAAAAAD6/wAAAAABAAAAAAD8/wAAAAABAAAAAAD9/wAAAAABAAAAAAD//wAAAAABAAAAAAAAAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAFAAAAAAABAAAAAAAGAAAAAAABAAAAAAA=")
 tile_set = ExtResource("5_p8osl")
 
+[node name="Rack" parent="YeastShelf" instance=ExtResource("6_g3afk")]
+position = Vector2(-120, -26)
+
+[node name="Rack2" parent="YeastShelf" instance=ExtResource("6_g3afk")]
+position = Vector2(-72, -26)
+
+[node name="Rack3" parent="YeastShelf" instance=ExtResource("6_g3afk")]
+position = Vector2(-24, -26)
+
+[node name="Rack4" parent="YeastShelf" instance=ExtResource("6_g3afk")]
+position = Vector2(24, -26)
+
+[node name="Rack5" parent="YeastShelf" instance=ExtResource("6_g3afk")]
+position = Vector2(72, -26)
+
 [node name="SugarShelf" parent="." groups=["sugar_buy_zone"] instance=ExtResource("4_fr3hd")]
 position = Vector2(312, 170)
 
@@ -162,6 +176,21 @@ position = Vector2(312, 170)
 position = Vector2(0, 6)
 tile_map_data = PackedByteArray("AAD5////AAACAAAAAAD6////AAACAAAAAAD8////AAACAAAAAAD9////AAACAAAAAAD/////AAACAAAAAAAAAP//AAACAAAAAAACAP//AAACAAAAAAADAP//AAACAAAAAAAFAP//AAACAAAAAAAGAP//AAACAAAAAAD5/wAAAAACAAAAAAD6/wAAAAACAAAAAAD8/wAAAAACAAAAAAD9/wAAAAACAAAAAAD//wAAAAACAAAAAAAAAAAAAAACAAAAAAACAAAAAAACAAAAAAADAAAAAAACAAAAAAAFAAAAAAACAAAAAAAGAAAAAAACAAAAAAA=")
 tile_set = ExtResource("5_p8osl")
+
+[node name="Rack" parent="SugarShelf" instance=ExtResource("6_g3afk")]
+position = Vector2(-120, -26)
+
+[node name="Rack2" parent="SugarShelf" instance=ExtResource("6_g3afk")]
+position = Vector2(-72, -26)
+
+[node name="Rack3" parent="SugarShelf" instance=ExtResource("6_g3afk")]
+position = Vector2(-24, -26)
+
+[node name="Rack4" parent="SugarShelf" instance=ExtResource("6_g3afk")]
+position = Vector2(24, -26)
+
+[node name="Rack5" parent="SugarShelf" instance=ExtResource("6_g3afk")]
+position = Vector2(72, -26)
 
 [node name="Bucket" parent="." instance=ExtResource("5_buffe")]
 position = Vector2(153, 166)

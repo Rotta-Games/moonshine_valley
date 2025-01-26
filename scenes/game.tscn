@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cwea1jg54vlwh" path="res://scenes/shop/dokmanni.tscn" id="12_hbpd2"]
 [ext_resource type="PackedScene" uid="uid://cq2d0vlsir6qy" path="res://scenes/views/bucket_observe_view.tscn" id="13_6qf0n"]
 [ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shop/shopkeeper.tscn" id="13_l4n53"]
-[ext_resource type="PackedScene" path="res://scenes/gui/help_text.tscn" id="13_nj5j4"]
+[ext_resource type="PackedScene" uid="uid://cdhkhaas52uc4" path="res://scenes/gui/help_text.tscn" id="13_nj5j4"]
 [ext_resource type="AudioStream" uid="uid://dccjdwd3rgw1x" path="res://assets/sfx/Moonshine_Valley_ambient_120bps_192k.mp3" id="17_75pwq"]
 
 [sub_resource type="Resource" id="Resource_2rr4b"]

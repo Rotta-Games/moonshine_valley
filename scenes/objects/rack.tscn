@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=4 uid="uid://ddlmmry2mptq5"]
+
+[ext_resource type="TileSet" uid="uid://datlpqy0s1nau" path="res://assets/world.tres" id="2_j0mit"]
+
+[node name="Rack" type="Node2D"]
+
+[node name="TileMap" type="Node2D" parent="."]
+
+[node name="Foreground_top" type="TileMapLayer" parent="TileMap"]
+z_index = 2
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAUAAAABAAAAAAABAAUAAAACAAAAAAACAAUAAAA=")
+tile_set = ExtResource("2_j0mit")
+
+[node name="Foreground_bottom" type="TileMapLayer" parent="TileMap"]
+z_index = -98
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAAEAAAAAAAYAAAAAAAIAAAAAAAcAAAABAAEAAAABAAYAAAABAAIAAAABAAcAAAACAAEAAAACAAYAAAACAAIAAAACAAcAAAA=")
+tile_set = ExtResource("2_j0mit")
+
+[node name="Floor" type="TileMapLayer" parent="TileMap"]
+z_index = -99
+use_parent_material = true
+tile_set = ExtResource("2_j0mit")
