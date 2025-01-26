@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://o5u5gm7lsjoe"]
+
+[ext_resource type="Script" path="res://scripts/credits.gd" id="1_7wnos"]
+[ext_resource type="Texture2D" uid="uid://d2qxjvo71adcv" path="res://assets/gfx/game_menu.png" id="2_ua634"]
+[ext_resource type="AudioStream" uid="uid://ctv0yfnrexp8b" path="res://assets/sfx/kiljuvainiolla_remix_130bps_192k.mp3" id="3_juofa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_653g4"]
+font_size = 14
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fcqjs"]
+font_size = 8
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+script = ExtResource("1_7wnos")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 481.0
+offset_bottom = 272.0
+texture = ExtResource("2_ua634")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_juofa")
+parameters/looping = true
+
+[node name="Credits" type="Label" parent="."]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 97.0
+offset_right = 399.0
+offset_bottom = 179.0
+text = "DeWa: Code
+JanisKeisari: Graphics
+Mutjake: Sound Design
+Skorpy: Code
+zaih: Code"
+label_settings = SubResource("LabelSettings_653g4")
+
+[node name="Info" type="Label" parent="."]
+layout_mode = 0
+offset_left = 279.0
+offset_top = 254.0
+offset_right = 479.0
+offset_bottom = 269.0
+text = "Press <cancel> to go back"
+label_settings = SubResource("LabelSettings_fcqjs")
