@@ -34,6 +34,7 @@ func _process(delta: float) -> void:
 		audio_player2.stop()
 		timer.stop()
 		closed.emit()
+		texture.texture.atlas.region.position.x = FRAME_WIDTH
 		return
 		
 	if not _bucket:
