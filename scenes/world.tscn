@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_58r0s"]
 [ext_resource type="TileSet" uid="uid://datlpqy0s1nau" path="res://assets/world.tres" id="2_d7ijn"]
 [ext_resource type="PackedScene" uid="uid://bguyl7ppbi3e0" path="res://scenes/bottle_spawn.tscn" id="3_4ilww"]
-[ext_resource type="PackedScene" path="res://scenes/objects/tree.tscn" id="3_sid5g"]
-[ext_resource type="PackedScene" path="res://scenes/objects/tall_tree.tscn" id="4_wovwo"]
+[ext_resource type="PackedScene" uid="uid://chkwfe5e54qfq" path="res://scenes/objects/tree.tscn" id="3_sid5g"]
+[ext_resource type="PackedScene" uid="uid://li152xatfeon" path="res://scenes/objects/tall_tree.tscn" id="4_wovwo"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_58r0s")
