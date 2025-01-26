@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvdsl6wus20ct"]
+[gd_scene load_steps=6 format=3 uid="uid://ovw6ffs5fdkd"]
 
 [ext_resource type="Script" path="res://scripts/buyer.gd" id="1_img7g"]
 [ext_resource type="Texture2D" uid="uid://o32iwpomlaqq" path="res://assets/gfx/deeku_sheet.png" id="2_pppgw"]
-[ext_resource type="PackedScene" uid="uid://bo7a3vhjunbtd" path="res://scenes/speech_bubble.tscn" id="3_n2nbq"]
+[ext_resource type="PackedScene" path="res://scenes/speech_bubble.tscn" id="3_n2nbq"]
+[ext_resource type="AudioStream" uid="uid://i6uqrrulwgid" path="res://assets/sfx/pulina_3s.mp3" id="4_xrntu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k73b8"]
 radius = 13.0384
@@ -20,5 +21,9 @@ position = Vector2(10, -20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_k73b8")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xrntu")
+attenuation = 4.59479
 
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
