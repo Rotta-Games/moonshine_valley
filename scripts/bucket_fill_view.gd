@@ -4,6 +4,7 @@ extends Control
 @onready var _sugar_sprite: TextureRect = $"TextureRect/SugarTexture"
 @onready var _ingredient_target_location: Node2D = $"IngredientTargetPosition"
 @onready var _ingredient_start_location: Node2D = $"IngredientStartPosition"
+@onready var _audio_player : AudioStreamPlayer2D = $"AudioStreamPlayer2D"
 
 var _rng : RandomNumberGenerator = RandomNumberGenerator.new()
 var _bucket : Bucket = null
@@ -31,6 +32,7 @@ func _get_ingredient(sprite: TextureRect):
 func _add_ingredient(sprite: TextureRect):
 	var ingredient = _get_ingredient(sprite)
 	ingredient.show()
+	_audio_player.play()
 	var tween_pos = create_tween()
 	var tween_rot = create_tween()
 	tween_pos.tween_property(ingredient, "position", _ingredient_target_location.position, 0.25)
