@@ -44,8 +44,8 @@ func _process(delta):
 			if item_count > 0:
 				player.inventory.remove_item(item, 1)
 				item_used.emit(item.id)
-		#else:
-			# teksti ruudulle: why would you do that??
+		else:
+			SignalManager.send_help_text.emit("That's probably not good ingredient")
 
 func _highlight_selected():
 	if _selected_index >= len(item_container.get_children()):

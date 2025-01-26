@@ -2,12 +2,14 @@ extends Control
 
 @onready var texture : TextureRect = $"TextureRect"
 @onready var audio_player : AudioStreamPlayer2D = $"AudioStreamPlayer2D"
+@onready var audio_player2 : AudioStreamPlayer2D = $"AudioStreamPlayer2D2"
 @onready var timer : Timer = $"Timer"
 
 var _animation_playing: bool = false
 
 const FRAME_WIDTH := 160
 const FRAME_COUNT = 7
+const SPOILED_FRAME = 9
 const TIME_PER_FRAME := 0.09
 var cur_frame_time := 0.0
 var _bucket : Bucket = null
@@ -43,6 +45,11 @@ func _check_bucket_progress(progress):
 	timer.start(next_plup)
 		
 func _check_frame(delta: float):
+	if _bucket and _bucket.state == Bucket.State.SPOILED:
+		texture.texture.atlas.region.position.x = FRAME_WIDTH * SPOILED_FRAME
+		_animation_playing = false
+		audio_player2.play()
+	
 	if not _animation_playing:
 		return
 	cur_frame_time += delta
