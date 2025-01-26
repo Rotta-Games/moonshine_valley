@@ -1,6 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dj3q184wmpb0t"]
+[gd_scene load_steps=5 format=3 uid="uid://dj3q184wmpb0t"]
 
 [ext_resource type="Script" path="res://scripts/inventory_item.gd" id="1_p204e"]
+[ext_resource type="Texture2D" uid="uid://pwk40xte5av0" path="res://assets/gfx/objects.png" id="2_hha4m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0ggs"]
+atlas = ExtResource("2_hha4m")
+region = Rect2(47.9996, 0.00514746, 16.0623, 16.0211)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7wvjm"]
 font_size = 8
@@ -11,6 +16,11 @@ offset_bottom = 32.0
 scale = Vector2(0.998622, 1.00156)
 script = ExtResource("1_p204e")
 
+[node name="SelectOverlay" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_h0ggs")
+
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
 
@@ -18,8 +28,3 @@ layout_mode = 2
 layout_mode = 2
 text = "3"
 label_settings = SubResource("LabelSettings_7wvjm")
-
-[node name="UnselectOverlay" type="ColorRect" parent="."]
-modulate = Color(0, 0.898762, 0.902519, 0.321569)
-layout_mode = 2
-color = Color(0.898222, 0.587872, 0.759028, 1)
