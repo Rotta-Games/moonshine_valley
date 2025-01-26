@@ -9,11 +9,11 @@
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="5_k53qs"]
 [ext_resource type="PackedScene" uid="uid://dfasmvevnkqlv" path="res://scenes/teleport.tscn" id="6_jmxoo"]
 [ext_resource type="Script" path="res://scripts/money_label.gd" id="8_gsygp"]
-[ext_resource type="PackedScene" uid="uid://c1m22va7uwgtf" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
+[ext_resource type="PackedScene" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
 [ext_resource type="PackedScene" uid="uid://c8wam82o4tpa" path="res://scenes/views/bucket_fill_view.tscn" id="10_v3rci"]
 [ext_resource type="PackedScene" uid="uid://6y4yg73so1d5" path="res://scenes/gui/menu.tscn" id="11_iy8x7"]
 [ext_resource type="PackedScene" uid="uid://cwea1jg54vlwh" path="res://scenes/shop/dokmanni.tscn" id="12_hbpd2"]
-[ext_resource type="PackedScene" uid="uid://cq2d0vlsir6qy" path="res://scenes/views/bucket_observe_view.tscn" id="13_6qf0n"]
+[ext_resource type="PackedScene" path="res://scenes/views/bucket_observe_view.tscn" id="13_6qf0n"]
 [ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shop/shopkeeper.tscn" id="13_l4n53"]
 [ext_resource type="PackedScene" path="res://scenes/gui/help_text.tscn" id="13_nj5j4"]
 [ext_resource type="AudioStream" uid="uid://dccjdwd3rgw1x" path="res://assets/sfx/Moonshine_Valley_ambient_120bps_192k.mp3" id="17_75pwq"]
@@ -44,19 +44,19 @@ position = Vector2(168, 141)
 position = Vector2(598, -65)
 
 [node name="Home" parent="." instance=ExtResource("2_h8pvb")]
-position = Vector2(576, 353)
+position = Vector2(1552, -23)
 
 [node name="SpawnPoint" type="Node2D" parent="Home"]
 position = Vector2(102, 233)
 
 [node name="SMarketShop" parent="." instance=ExtResource("3_7lrkb")]
-position = Vector2(0, 352)
+position = Vector2(1431, 830)
 
 [node name="SpawnPoint" type="Node2D" parent="SMarketShop"]
 position = Vector2(223, 232)
 
 [node name="DokmanniShop" parent="." instance=ExtResource("12_hbpd2")]
-position = Vector2(45, 776)
+position = Vector2(13, 795)
 
 [node name="SpawnPoint" type="Node2D" parent="DokmanniShop"]
 position = Vector2(223, 238)
@@ -76,7 +76,7 @@ position = Vector2(744, 123)
 target = NodePath("../../SMarketShop/SpawnPoint")
 
 [node name="FromShopTeleport" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
-position = Vector2(224, 624)
+position = Vector2(1655, 1102)
 target = NodePath("../../World/ShopSpawnPoint")
 
 [node name="ToHome" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
@@ -85,7 +85,7 @@ scale = Vector2(1.52, 1)
 target = NodePath("../../Home/SpawnPoint")
 
 [node name="FromHome" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
-position = Vector2(712, 618)
+position = Vector2(1688, 242)
 scale = Vector2(2.41146, -1.2176)
 target = NodePath("../../World/HomeSpawnPoint")
 
@@ -94,7 +94,7 @@ position = Vector2(600, -85)
 target = NodePath("../../DokmanniShop/SpawnPoint")
 
 [node name="FromDokmanni" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
-position = Vector2(269, 1048)
+position = Vector2(237, 1067)
 target = NodePath("../../World/DokmanniSpawnPoint")
 
 [node name="SellingArea" type="Area2D" parent="."]
