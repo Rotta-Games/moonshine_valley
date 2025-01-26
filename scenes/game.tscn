@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b6m0eoberdjia"]
+[gd_scene load_steps=23 format=3 uid="uid://b6m0eoberdjia"]
 
 [ext_resource type="PackedScene" uid="uid://bxvyqs010obxu" path="res://scenes/world.tscn" id="1_gphd6"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_qbbn2"]
@@ -10,11 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://dfasmvevnkqlv" path="res://scenes/teleport.tscn" id="6_jmxoo"]
 [ext_resource type="Script" path="res://scripts/money_label.gd" id="8_gsygp"]
 [ext_resource type="PackedScene" uid="uid://c1m22va7uwgtf" path="res://scenes/gui/inventory_menu.tscn" id="8_i3gep"]
+[ext_resource type="PackedScene" uid="uid://tvnol765ci35" path="res://scenes/shop/buyer.tscn" id="10_6wikk"]
+[ext_resource type="AudioStream" uid="uid://cut6e1mrrlb23" path="res://assets/sfx/ovenavaus.mp3" id="10_fi2gm"]
 [ext_resource type="PackedScene" uid="uid://c8wam82o4tpa" path="res://scenes/views/bucket_fill_view.tscn" id="10_v3rci"]
 [ext_resource type="PackedScene" uid="uid://6y4yg73so1d5" path="res://scenes/gui/menu.tscn" id="11_iy8x7"]
 [ext_resource type="PackedScene" uid="uid://cwea1jg54vlwh" path="res://scenes/shop/dokmanni.tscn" id="12_hbpd2"]
 [ext_resource type="PackedScene" uid="uid://cq2d0vlsir6qy" path="res://scenes/views/bucket_observe_view.tscn" id="13_6qf0n"]
-[ext_resource type="PackedScene" uid="uid://btk2vrmv1x5kg" path="res://scenes/shop/shopkeeper.tscn" id="13_l4n53"]
 [ext_resource type="PackedScene" uid="uid://cdhkhaas52uc4" path="res://scenes/gui/help_text.tscn" id="13_nj5j4"]
 [ext_resource type="AudioStream" uid="uid://dccjdwd3rgw1x" path="res://assets/sfx/Moonshine_Valley_ambient_120bps_192k.mp3" id="17_75pwq"]
 
@@ -26,7 +27,14 @@ max_size = 10
 size = Vector2(80, 64)
 
 [sub_resource type="LabelSettings" id="LabelSettings_w3iyl"]
-font_size = 14
+font_size = 10
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_h2lrx"]
+font_size = 10
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Game" type="Node2D"]
 process_mode = 1
@@ -83,6 +91,7 @@ target = NodePath("../../World/ShopSpawnPoint")
 position = Vector2(176, 123)
 scale = Vector2(1.52, 1)
 target = NodePath("../../Home/SpawnPoint")
+stream_resource = ExtResource("10_fi2gm")
 
 [node name="FromHome" parent="Teleports" node_paths=PackedStringArray("target") instance=ExtResource("6_jmxoo")]
 position = Vector2(1688, 242)
@@ -100,12 +109,13 @@ target = NodePath("../../World/DokmanniSpawnPoint")
 [node name="SellingArea" type="Area2D" parent="."]
 position = Vector2(-218, 91)
 
-[node name="Shopkeeper" parent="SellingArea" instance=ExtResource("13_l4n53")]
-position = Vector2(41, 27)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SellingArea"]
 position = Vector2(40, 32)
 shape = SubResource("RectangleShape2D_h1kce")
+
+[node name="Buyer" parent="SellingArea" instance=ExtResource("10_6wikk")]
+position = Vector2(13, 15)
+id = "BUYER"
 
 [node name="Buckets" type="Node2D" parent="."]
 
@@ -137,11 +147,6 @@ offset_bottom = 58.0
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="HelpText" parent="HUD" instance=ExtResource("13_nj5j4")]
-visible = false
-offset_left = 247.0
-offset_top = 0.0
-offset_right = 467.0
-offset_bottom = 45.0
 
 [node name="UI" type="Control" parent="HUD"]
 layout_mode = 3
@@ -162,12 +167,13 @@ rotation = 0.0174533
 
 [node name="MoneyLabel" type="Label" parent="HUD/UI/HBoxContainer"]
 layout_mode = 2
-text = "Fyffe:"
+text = "Money:"
 label_settings = SubResource("LabelSettings_w3iyl")
 
 [node name="MoneyAmount" type="Label" parent="HUD/UI/HBoxContainer"]
 layout_mode = 2
 text = "1M"
+label_settings = SubResource("LabelSettings_h2lrx")
 script = ExtResource("8_gsygp")
 
 [node name="Menu" parent="HUD" instance=ExtResource("11_iy8x7")]
@@ -181,6 +187,7 @@ attenuation = 0.615572
 parameters/looping = true
 
 [connection signal="bucket_sold" from="." to="Player" method="_on_bucket_sold"]
+[connection signal="bucket_sold" from="." to="SellingArea/Buyer" method="_on_game_bucket_sold"]
 [connection signal="bucket_inspected" from="Player" to="." method="_on_player_bucket_inspected"]
 [connection signal="bucket_inspected" from="Player" to="WindowCanvasLayer/BucketFillView" method="_on_player_bucket_inspected"]
 [connection signal="bucket_inspected" from="Player" to="WindowCanvasLayer/BucketObserveView" method="_on_player_bucket_inspected"]

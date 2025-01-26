@@ -12,7 +12,9 @@ signal pause_button_pressed()
 @onready var bottle_scene = preload("res://scenes/items/bottle.tscn")
 @onready var bucket_object_scene = preload("res://scenes/objects/bucket.tscn")
 @onready var raycast : RayCast2D = $"RayCast2D"
-@onready var help_text = $"../HUD/HelpText"
+
+@onready var bucket_fill_sound = preload("res://assets/sfx/vesipaussi.mp3")
+@onready var stream_player = $AudioStreamPlayer2D
 
 @export var bucket_container: Node2D
 
@@ -22,7 +24,7 @@ const JUMP_VELOCITY = -400.0
 const ACTION_HOLD_TIME_THRESHOLD = 0.05
 const ACTION_TAP_TIME_THRESHOLD = 0.8
 
-const START_MOENY = 100_00
+const START_MOENY = 60_00
 
 enum Action {NONE, BUY_YEAST, BUY_SUGAR, BUY_BUCKET, ACT_BUCKET, FILL_BUCKET}
 
@@ -114,15 +116,15 @@ func _update_carrying_item(old_pos: Vector2) -> void:
 
 func _update_action_indicator():
 	if velocity.x > 0:
-		action_indicator.position.x = 20
+		action_indicator.position.x = 18
 	elif velocity.x < 0:
-		action_indicator.position.x = -20
+		action_indicator.position.x = -18
 	elif velocity.y != 0:
 		action_indicator.position.x = 0
 	if velocity.y > 0:
 		action_indicator.position.y = 20
 	elif velocity.y < 0:
-		action_indicator.position.y = -20
+		action_indicator.position.y = -12
 	elif velocity.x != 0:
 		action_indicator.position.y = 0
 		
@@ -136,13 +138,13 @@ func _on_action_indicator_area_2d_area_shape_entered(area_rid: RID, area: Area2D
 	_current_action_target = area.get_parent()
 	var group = area.get_parent().get_groups()[0]
 	if group == "yeast_buy_zone":
-		help_text.play_text(yeast_item.item.description)
+		SignalManager.send_help_text.emit(yeast_item.item.description)
 		_current_action = Action.BUY_YEAST
 	if group == "sugar_buy_zone":
-		help_text.play_text(sugar_item.item.description)
+		SignalManager.send_help_text.emit(sugar_item.item.description)
 		_current_action = Action.BUY_SUGAR
 	if group == "bucket_buy_zone":
-		help_text.play_text(bucket_item.item.description)
+		SignalManager.send_help_text.emit(bucket_item.item.description)
 		_current_action = Action.BUY_BUCKET
 	if group == "bucket":
 		_current_action = Action.ACT_BUCKET
@@ -160,25 +162,31 @@ func _act_tap():
 			return
 		Action.BUY_YEAST:
 			if money_amount_cents < yeast_price_cents:
+				SignalManager.send_speak.emit('SHALEPA', SignalManager.speak_actions.NO_MONEY)
 				return
 
 			var ok = inventory.add_item(yeast_item.item, 1)
 			
 			if ok:
 				money_amount_cents -= yeast_price_cents
+				SignalManager.send_speak.emit('SHALEPA', SignalManager.speak_actions.YEAST)
 			
 		Action.BUY_SUGAR:
 			if money_amount_cents < sugar_price_cents:
+				SignalManager.send_speak.emit('SHALEPA', SignalManager.speak_actions.NO_MONEY)
 				return
 			var ok = inventory.add_item(sugar_item.item, 1)
 			if ok:
 				money_amount_cents -= sugar_price_cents
+				SignalManager.send_speak.emit('SHALEPA', SignalManager.speak_actions.SUGAR)
 		Action.BUY_BUCKET:
 			if money_amount_cents < bucket_price_cents:
+				SignalManager.send_speak.emit('DOKMANNI', SignalManager.speak_actions.NO_MONEY)
 				return
 			var ok = inventory.add_item(bucket_item.item, 1)
 			if ok:
 				money_amount_cents -= bucket_price_cents
+				SignalManager.send_speak.emit('DOKMANNI', SignalManager.speak_actions.BUCKET)
 		Action.ACT_BUCKET:
 			bucket_inspected.emit(_current_action_target as Bucket)
 			_to_be_carrying = false
@@ -189,6 +197,8 @@ func _act_tap():
 				inventory.remove_item(bucket_item.item, 1)
 				bucket.add_water(100)
 				bucket_container.add_child(bucket)
+				stream_player.stream = bucket_fill_sound
+				stream_player.play()
 
 func _act_hold():
 	match _current_action:
@@ -218,15 +228,11 @@ func _update_money(value) -> void:
 	money_amount_cents = value
 	money_changed.emit(money_amount_cents)
 
-
-func _on_bucket_sold(bucket_value: float) -> void:
-	print("gaining money: " + str(50_00 * bucket_value))
-	money_amount_cents += 50_00 * bucket_value
-
+func _on_bucket_sold(bucket: Bucket) -> void:
+	money_amount_cents += 50_00 * bucket.get_value()
 
 func add_bottle():
 	inventory.add_item(bottle_item.item, 1)	
-
 
 func sell_bottles() -> bool:
 	var bottle_amount = inventory.get_item_amount(bottle_item.item)

@@ -1,14 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://btk2vrmv1x5kg"]
+[gd_scene load_steps=6 format=3 uid="uid://tvnol765ci35"]
 
-[ext_resource type="Script" path="res://scripts/shopkeeper.gd" id="1_u284p"]
-[ext_resource type="Texture2D" uid="uid://vrehhrduuj64" path="res://assets/gfx/mr_bokmanni_sheet.png" id="2_4lb51"]
-[ext_resource type="PackedScene" uid="uid://bo7a3vhjunbtd" path="res://scenes/speech_bubble.tscn" id="2_5u7rm"]
+[ext_resource type="Script" path="res://scripts/buyer.gd" id="1_img7g"]
+[ext_resource type="Texture2D" uid="uid://vrehhrduuj64" path="res://assets/gfx/mr_bokmanni_sheet.png" id="2_l1u2k"]
+[ext_resource type="PackedScene" uid="uid://bo7a3vhjunbtd" path="res://scenes/speech_bubble.tscn" id="3_n2nbq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wsubn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_4lb51")
+"texture": ExtResource("2_l1u2k")
 }],
 "loop": true,
 "name": &"default",
@@ -18,13 +18,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_k73b8"]
 radius = 13.0384
 
-[node name="Shopkeeper" type="Node2D"]
-script = ExtResource("1_u284p")
+[node name="Buyer" type="Node2D"]
+script = ExtResource("1_img7g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wsubn")
 
-[node name="SpeechBubble" parent="." instance=ExtResource("2_5u7rm")]
+[node name="SpeechBubble" parent="." instance=ExtResource("3_n2nbq")]
 position = Vector2(10, -20)
 
 [node name="Area2D" type="Area2D" parent="."]

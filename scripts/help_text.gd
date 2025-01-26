@@ -1,15 +1,19 @@
-extends MarginContainer
+extends Node
 
 var text: String = ""
 
 @onready var label : Label = $"TextLabel" 
+
+func _ready():
+	SignalManager.send_help_text.connect(_on_send_help_text)
+
 func play_text(sent_text: String):
 	$Timer.start()
 	
-	if self.visible && text == sent_text:
+	if label.visible && text == sent_text:
 		return
 	label.visible_ratio = 0
-	self.visible = true
+	label.visible = true
 	label.text = sent_text
 	
 	var tween = get_tree().create_tween()
@@ -18,4 +22,8 @@ func play_text(sent_text: String):
 
 
 func _on_timer_timeout():
-	self.visible = false
+	label.visible = false
+
+func _on_send_help_text(text: String):
+	play_text(text)
+	

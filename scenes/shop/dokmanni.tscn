@@ -10,6 +10,7 @@
 
 [node name="Shopkeeper" parent="." instance=ExtResource("2_u5nc6")]
 position = Vector2(66, 51)
+id = "DOKMANNI"
 
 [node name="TileMap" type="Node2D" parent="."]
 
